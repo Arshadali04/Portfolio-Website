@@ -191,7 +191,7 @@ nav ul li a:active {
 
 #aboutSection {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   font-family: "Poppins", sans-serif;
   display: flex;
   justify-content: center;
@@ -210,8 +210,9 @@ nav ul li a:active {
   display: flex;
   flex-direction: column;
   /* row-gap: 2rem; */
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  padding: 80px;
 }
 
 .about-me-paragraph {
@@ -225,7 +226,7 @@ nav ul li a:active {
   /* Stop the lines from becoming too wide */
   margin: 20px auto;
   /* Add space above/below and center it */
-  text-align: left;
+  text-align: justify;
   /* Or 'center' if you prefer */
 }
 
@@ -758,6 +759,7 @@ footer p {
   padding: 60px 15px;
   /* A very light blue/white */
   text-align: center;
+  min-height: 100vh;
 }
 
 .skills-grid-container {
