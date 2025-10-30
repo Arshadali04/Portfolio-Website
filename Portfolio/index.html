@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+  <label class="bar" for="check">
+    <input type="checkbox" id="check" />
+
+    <span class="top"></span>
+    <span class="middle"></span>
+    <span class="bottom"></span>
+  </label>
+
+  <nav class="nav show">
+    <ul>
+      <li><a href="#home" class="navbtn">Home</a></li>
+      <li>
+        <a href="#aboutSection" class="navbtn">About</a>
+      </li>
+      <li>
+        <a href="#education" class="navbtn">Education</a>
+      </li>
+      <li>
+        <a href="#skills" class="navbtn">Skills</a>
+      </li>
+      <li>
+        <a href="#contact" class="navbtn">Contact</a>
+      </li>
+    </ul>
+  </nav>
+  <div id="navContainer">
+    <div id="titleContainer">
+      <h1>Portf<span class="color-blue">olio</span></h1>
+    </div>
+  </div>
+  <main class="introSection" id="home">
+    <div class="container">
+      <div id="myPhoto">
+        <img src="1jpg.jpg" alt="photo" class="img" />
+      </div>
+      <div class="introDetails">
+        <div id="introContent">
+          <h1>Hi I'am <span class="color-blue">Arshadali M Athani</span></h1>
+          <p>
+            Computer Science Student at RV Institute of Technology and Management.<br>
+            Focused on Data Analysis, Data engineering, Cybersecurity and Pentesting
+          </p>
+          <div id="iconsContainer">
+            <a href="https://github.com/Arshadali04" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com/in/arshadali4" target="_blank"><i class="fa-brands fa-linkedin icon"></i></a>
+            <a href="mailto:arshadalia2703@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a>
+          </div>
+          <div class="buttonContainer">
+            <button class="btn"><a href="#contact">Contact Me</a></button>
+            <a href="Arshadali_1RF23CS037.pdf" download class="btn dbtn">Download Cv</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="line"></div>
+  <section id="aboutSection">
+    <div class="about-container">
+      <h1 class="h1">About <span class="color-blue">Me</span></h1>
+
+      <p class="about-me-paragraph">
+        Hello! I'm currently pursuing B.E in Computer Science Engineering at RV Institute of Technology and Management,
+        Bangalore.
+        I'm intersted in Data Engineering and Cybersecurity.
+        I spend my time learning new technologies, working on projects like Data anonymization in financial system and
+        File Organizer for Unix Systems
+        and solving problems on various coding platforms like hackerank and leetcode
+        I'm always eager to apply my skills to real-world challenges
+        and grow as a developer.
+        Apart from coding, I play for my college Football Team and I'm a lead member of the college's techenical club.
+      </p>
+    </div>
+  </section>
+  <div class="line"></div>
+  <section id="education">
+    <h2 class="section-title">My <span class="color-blue">Education</span></h2>
+
+    <div class="timeline-container">
+
+      <div class="timeline-item">
+        <div class="timeline-icon">
+          <i class="fa-solid fa-book-open"></i>
+        </div>
+        <div class="timeline-content">
+          <span class="date">2013 - 2021</span>
+          <h3>Class X (10th Grade)</h3>
+          <h4>Podar International School</h4>
+          <p>Percentage: 92.5%</p>
+        </div>
+      </div>
+
+
+
+      <div class="timeline-item">
+        <div class="timeline-icon">
+          <i class="fa-solid fa-school"></i>
+        </div>
+        <div class="timeline-content">
+          <span class="date">2021 - 2023</span>
+          <h3>Class XII (12th Grade)</h3>
+          <h4>KLE Independent PU College </h4>
+          <p>Percentage: 87.5%</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="timeline-content">
+          <span class="date">2023 - Present</span>
+          <h3>B.E. in CSE</h3>
+          <h4>RV Institute of Technology</h4>
+          <p>CGPA: 8.85</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="line"></div>
+  <section id="skills">
+    <h2 class="section-title">My <span class="color-blue">Skills</span></h2>
+
+    <div class="skills-grid-container">
+
+      <div class="skill-box">
+        <i class="fa-brands fa-python skill-icon"></i>
+        <h4>Python</h4>
+      </div>
+
+      <div class="skill-box">
+        <i class="fa-solid fa-c skill-icon"></i>
+        <h4>C/C++</h4>
+      </div>
+
+      <div class="skill-box">
+        <i class="fa-solid fa-database skill-icon"></i>
+        <h4>SQL</h4>
+      </div>
+
+      <div class="skill-box">
+        <i class="fa-solid fa-code skill-icon"></i>
+        <h4>Web Technology</h4>
+      </div>
+
+      <div class="skill-box">
+        <i class="fa-brands fa-java skill-icon"></i>
+        <h4>Java</h4>
+      </div>
+
+      <div class="skill-box">
+        <i class="fa-brands fa-linux skill-icon"></i>
+        <h4>Linux</h4>
+      </div>
+
+      <div class="skill-box">
+        <i class="fa-solid fa-terminal skill-icon"></i>
+        <h4>Bash Scripting</h4>
+      </div>
+
+      <div class="skill-box">
+        <i class="fa-brands fa-git-alt skill-icon"></i>
+        <h4>Git</h4>
+      </div>
+
+      <div class="skill-box">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2048px-Visual_Studio_Code_1.35_icon.svg.png"
+          alt="VS Code" class="skill-img-icon">
+        <h4>VS Code</h4>
+      </div>
+
+      <div class="skill-box">
+        <i class="fa-solid fa-desktop skill-icon"></i>
+        <h4>Virtual Machines</h4>
+      </div>
+
+      <div class="skill-box">
+        <i class="fa-solid fa-chart-line skill-icon"></i>
+        <h4>Data Analysis</h4>
+      </div>
+
+    </div>
+  </section>
+  <div class="line"></div>
+  <section id="contact">
+    <div class="center">
+      <h1>Cont<span class="color-blue">act</span></h1>
+      <div id="c-box-container">
+        <div class="c-box" id="left-contact">
+          <div class="num-container">
+            <div id="left-container">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="right-container">
+              <h3>+91 9686682703</h3>
+            </div>
+          </div>
+          <div class="num-container">
+            <div id="left-container">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div class="right-container">
+              <h3>India</h3>
+            </div>
+          </div>
+          <div class="num-container">
+            <div id="left-container">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="right-container">
+              <h3>arshadalia2703@gmail.com</h3>
+              <p>
+                Send an Email
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="c-box">
+          <h2>How Can I Help You?</h2>
+          <input type="text" name="" id="" placeholder="Full Name" />
+          <input type="email" name="" id="" placeholder="Email Address" />
+          <input type="text" name="" id="" placeholder="Subject" />
+          <textarea name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <p id="cpy">Copyright &copy <span class="currentYear"></span> All rights reserved.</p>
+
+  </footer>
+  <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,824 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #161616fb;
+  color: white;
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+/* -------------------------Navbar----------------------------- */
+input[type="checkbox"] {
+  display: none;
+}
+
+#navContainer {
+  position: fixed;
+  z-index: 4;
+}
+
+#titleContainer {
+  top: 6px;
+}
+
+.nav {
+  background-color: rgb(27, 29, 31);
+  height: 60px;
+  width: 100vw;
+  position: fixed;
+  z-index: 4;
+  border-bottom: 1px solid #7b7b7b;
+}
+
+.nav ul {
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.nav ul li {
+  margin: 7px 9px;
+}
+
+nav ul li a {
+  padding: 17px 4px;
+  color: #c5c6c7;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  border-bottom: 1px solid #f5f5f5;
+  border-radius: 1px;
+  color: #f5f5f5;
+}
+
+nav ul li a:active {
+  color: #f5f5f5;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+/*--------------------- Main Section ------------------------*/
+
+.introSection {
+  /* background-color: rgb(231 234 235); */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  /* background-color: rgb(43, 8, 243); */
+  /* border: 3px solid yellow; */
+  width: 70vw;
+  height: 60vh;
+  display: flex;
+  column-gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.introDetails {
+  /* border: 2px solid red; */
+  width: 45%;
+  height: 60%;
+}
+
+#introContent {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: left; */
+  row-gap: 20px;
+}
+
+#iconsContainer {
+  display: flex;
+  column-gap: 20px;
+}
+
+#iconsContainer a {
+  /* border: 3px solid blue; */
+  font-size: 2rem;
+  color: #1184f0;
+}
+
+#iconsContainer a:hover {
+  color: #007ced;
+  text-shadow: 0 0 50px #007ced;
+}
+
+.btn {
+  background-color: #333;
+  box-shadow: 0 10px 10px -8px rgba(0, 0, 0, 0.78);
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  border: 2px solid #007ced;
+  border-radius: 20px;
+  margin: 6px 0px;
+  padding: 12px 15px;
+  text-align: center;
+}
+
+.btn a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.dbtn {
+  border: 2px solid white;
+  margin-left: 10px;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: #007ced;
+  font-weight: bold;
+}
+
+.dbtn:hover {
+  color: #343a40;
+  background-color: white;
+  font-weight: bolder;
+}
+
+#myPhoto {
+  width: 45%;
+  /* height: 60%; */
+  /* background-color: rgb(135 206 250); */
+  /* border:2px solid rgb(23, 150, 182); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#myPhoto>.img {
+  width: 310px;
+  height: 310px;
+  border: 10px solid rgb(68, 68, 68);
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 150px;
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.8);
+}
+
+.line {
+  width: 90vw;
+  height: 1px;
+  background-color: grey;
+  margin: auto;
+}
+
+/* -----------------About section-------------------- */
+
+#aboutSection {
+  width: 100vw;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: antiquewhite; */
+}
+
+.color-blue {
+  color: #007ced;
+}
+
+.about-container {
+  width: 100%;
+  height: 100%;
+  /* background-color: lightblue; */
+  display: flex;
+  flex-direction: column;
+  /* row-gap: 2rem; */
+  justify-content: center;
+  align-items: center;
+}
+
+.about-me-paragraph {
+  font-size: 1.1rem;
+  /* Make the text readable */
+  line-height: 1.6;
+  /* Add some spacing between lines */
+  color: #ffffff;
+  /* A dark grey color is often easier to read than pure black */
+  max-width: 800px;
+  /* Stop the lines from becoming too wide */
+  margin: 20px auto;
+  /* Add space above/below and center it */
+  text-align: left;
+  /* Or 'center' if you prefer */
+}
+
+.about-container h1 {
+  font-size: 3rem;
+  /* border: 2px solid white; */
+}
+
+/* ---------------------------Contact ---------------------------*/
+
+#contact {
+  /* border: 2px solid rebeccapurple; */
+  width: 100vw;
+  height: 94vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center {
+  width: 85%;
+  height: 80%;
+  margin-top: 5rem;
+  /* border: 2px solid saddlebrown; */
+}
+
+.num-container {
+  display: flex;
+  column-gap: 1rem;
+  /* border: 2px solid yellowgreen; */
+  margin-bottom: 1.5rem;
+}
+
+#left-container i {
+  font-size: 1.8rem;
+  width: 28px;
+  color: #007ced;
+}
+
+.center h1 {
+  font-size: 3rem;
+}
+
+#c-box-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 90%;
+  /* border: 1px solid grey; */
+}
+
+.c-box {
+  width: 46%;
+  height: 80%;
+  /* border: 2px solid orange; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+}
+
+.c-box h2 {
+  margin-bottom: 1rem;
+}
+
+.c-box input {
+  width: 60%;
+  background-color: transparent;
+  border: 2px solid rgb(51, 51, 51);
+  border-radius: 6px;
+  height: 3rem;
+  padding-left: 8px;
+  margin-bottom: 1rem;
+  color: #f5f5f5;
+}
+
+.c-box textarea {
+  background-color: transparent;
+  border: 1px solid rgb(59, 59, 59);
+  padding-left: 8px;
+  padding-top: 8px;
+  margin-bottom: 1rem;
+  color: #f5f5f5;
+}
+
+.c-box button {
+  width: 140px;
+  background-color: #333;
+  box-shadow: 0 10px 10px -8px rgba(0, 0, 0, 0.78);
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  border: 2px solid #007ced;
+  border-radius: 20px;
+  margin: 6px 0px;
+  padding: 13px 15px;
+  text-align: center;
+}
+
+footer {
+  background-color: rgb(27, 29, 31);
+  border-top: 1px solid #333;
+  height: 50px;
+  padding-top: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer p {
+  font-size: 13px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Styles for tablets */
+@media only screen and (min-width: 768px) {
+
+  /* Tablet-specific CSS styles here */
+  nav {
+    display: block !important;
+  }
+
+  #myPhoto>.img {
+    width: 250px;
+    height: 250px;
+    margin-left: 5px;
+  }
+
+  .container {
+    width: 80vw;
+  }
+
+  #myPhoto {
+    width: 45%;
+  }
+
+  .introDetails {
+    width: 50%;
+  }
+
+  #titleContainer {
+    position: absolute;
+    left: 12px;
+    z-index: 5;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #cpy {
+    display: none;
+  }
+
+  footer {
+    justify-content: end;
+  }
+
+  .container {
+    flex-direction: column;
+    width: 90vw;
+  }
+
+  #myPhoto>.img {
+    width: 200px;
+    height: 200px;
+    margin-left: 5px;
+  }
+
+  .introDetails {
+    /* border: 2px solid red; */
+    width: 100%;
+    height: 90%;
+    margin-top: 2rem;
+  }
+
+  #introContent {
+    text-align: center;
+  }
+
+  #iconsContainer {
+    justify-content: center;
+  }
+
+  .nav {
+    height: 30%;
+    display: none;
+    margin-top: 60px;
+  }
+
+  .nav>ul {
+    flex-direction: column;
+  }
+
+  #titleContainer {
+    position: absolute;
+    left: 18px;
+    top: 8px;
+    z-index: 3;
+    cursor: pointer;
+  }
+
+  #navContainer {
+    height: 60px;
+    width: 100vw;
+    position: fixed !important;
+    top: 0;
+    z-index: 3;
+    border-bottom: 1px solid white;
+    background-color: rgb(27, 29, 31);
+  }
+
+  nav ul li a {
+    padding-bottom: 5px;
+  }
+
+  #left-contact {
+    display: none;
+  }
+
+  #c-box-container {
+    justify-content: left;
+  }
+
+  .c-box {
+    width: 80%;
+  }
+
+  input[type="checkbox"] {
+    /* -webkit-appearance: none; */
+    display: none;
+    visibility: hidden;
+  }
+
+  .bar {
+    display: block;
+    position: fixed;
+    top: 10px;
+    right: 18px;
+    cursor: pointer;
+    width: 50px;
+    height: 40px;
+    z-index: 4;
+  }
+
+  .bar span {
+    position: absolute;
+    width: 45px;
+    height: 7px;
+    background: #f1faee;
+    border-radius: 100px;
+    display: inline-block;
+    transition: 0.3s ease;
+    left: 0;
+  }
+
+  .bar span.top {
+    top: 0;
+  }
+
+  .bar span.middle {
+    top: 17px;
+  }
+
+  .bar span.bottom {
+    bottom: 0;
+  }
+
+  input[type]:checked~span.top {
+    transform: rotate(45deg);
+    transform-origin: top left;
+    width: 48px;
+    left: 5px;
+  }
+
+  input[type]:checked~span.bottom {
+    transform: rotate(-45deg);
+    transform-origin: top left;
+    width: 48px;
+    bottom: -1px;
+    box-shadow: 0 0 10px #495057;
+  }
+
+  input[type]:checked~span.middle {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  #aboutSection {
+    height: 180vh;
+  }
+
+  .about-container {
+    row-gap: 1rem;
+    justify-content: end;
+  }
+}
+
+@media only screen and (max-width: 456px) {
+  #aboutSection {
+    height: 120vh;
+  }
+
+  #titleContainer {
+    left: 12px;
+    top: 11px;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  h2 {
+    font-size: 17px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  .about-container h1,
+  .center h1 {
+    font-size: 24px;
+  }
+
+  .c-box {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  #aboutSection {
+    height: 180vh;
+  }
+
+  #myPhoto>.img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .btn,
+  .c-box button {
+    width: 90px;
+    font-size: 10px;
+    padding: 11px;
+  }
+
+  .c-box button {
+    width: 100px;
+  }
+
+  #iconsContainer a {
+    font-size: 25px;
+  }
+}
+
+@media only screen and (min-height: 1180px) {
+  #aboutSection {
+    height: 110vh;
+  }
+}
+
+/* =================================
+   EDUCATION TIMELINE STYLES
+   ================================= */
+
+/* --- Main Section & Title --- */
+#education {
+  padding: 60px 15px;
+  /* A light background */
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  font-weight: 700;
+}
+
+/* --- The Timeline Container --- */
+.timeline-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* --- The Central Vertical Line --- */
+.timeline-container::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  background-color: #007bff;
+  /* Using your 'color-blue' */
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1.5px;
+  opacity: 0.3;
+}
+
+/* --- Each Timeline "Row" --- */
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+  box-sizing: border-box;
+  /* Important for padding */
+}
+
+/* --- Alternating Sides --- */
+/* Left side item */
+.timeline-item:nth-child(odd) {
+  left: 0;
+  padding-right: 30px;
+  /* Space from center line */
+}
+
+/* Right side item */
+.timeline-item:nth-child(even) {
+  left: 50%;
+  padding-left: 30px;
+  /* Space from center line */
+}
+
+/* --- The Icon on the Line --- */
+.timeline-icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border: 3px solid #007bff;
+  opacity: 0.8;
+  top: 15px;
+  right: -25px;
+  /* Position on the line */
+  border-radius: 50%;
+  z-index: 10;
+
+  /* Centering the icon inside */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #007bff;
+}
+
+/* Move icon for even (right) items */
+.timeline-item:nth-child(even) .timeline-icon {
+  left: -25px;
+}
+
+/* --- The Content Card --- */
+.timeline-content {
+  padding: 20px 25px;
+  background-color: white;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
+.timeline-content .date {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #007bff;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.timeline-content h3 {
+  font-size: 1.4rem;
+  margin: 0 0 5px 0;
+  color: #333;
+}
+
+.timeline-content h4 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #555;
+  margin: 0 0 10px 0;
+}
+
+.timeline-content p {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* =================================
+   RESPONSIVE (Mobile View)
+   ================================= */
+@media screen and (max-width: 768px) {
+
+  /* Move the line to the left */
+  .timeline-container::after {
+    left: 30px;
+  }
+
+  /* Make all items full-width and on the right side */
+  .timeline-item {
+    width: 100%;
+    padding-left: 60px;
+    /* Space for line and icon */
+    padding-right: 15px;
+    left: 0;
+    /* Reset left positioning */
+  }
+
+  .timeline-item:nth-child(even) {
+    left: 0;
+    /* Reset left positioning */
+  }
+
+  /* Move all icons to the line on the left */
+  .timeline-icon {
+    left: 5px;
+    /* (30px line - 25px icon width / 2) */
+  }
+
+  .timeline-item:nth-child(even) .timeline-icon {
+    left: 5px;
+  }
+}
+
+/* =================================
+   SKILLS SECTION STYLES
+   ================================= */
+#skills {
+  padding: 60px 15px;
+  /* A very light blue/white */
+  text-align: center;
+}
+
+.skills-grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* Allows items to wrap to the next line on small screens */
+  justify-content: center;
+  gap: 25px;
+  /* The space between your skill boxes */
+  max-width: 1100px;
+  margin: 50px auto 0;
+  /* 50px space from title, auto centers it */
+}
+
+.skill-box {
+  width: 160px;
+  /* Width of each box */
+  height: 140px;
+  /* Height of each box */
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  /* This makes the corners rounded */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+  /* The shadow effect */
+
+  /* Flexbox to center the icon and text */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 0.3s ease;
+  /* For the hover animation */
+}
+
+.skill-box:hover {
+  transform: translateY(-5px);
+  /* Lifts the box up slightly */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.skill-icon {
+  font-size: 3rem;
+  /* 48px */
+  margin-bottom: 15px;
+  color: #007bff;
+  /* Uses your 'color-blue' */
+}
+
+.skill-img-icon {
+  width: 48px;
+  /* 3rem, to match the font icons */
+  height: 48px;
+  margin-bottom: 15px;
+}
+
+.skill-box h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+  /* Removes default margin */
+}
