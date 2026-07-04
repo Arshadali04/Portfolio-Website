@@ -160,7 +160,7 @@ Update those files to change your name, bio, projects, colors, and contact detai
 |----------|------|
 | 🐙 **GitHub** | [github.com/arshadaliathani](https://github.com/arshadali04) |
 | 💼 **LinkedIn** | [linkedin.com/in/arshadaliathani](https://linkedin.com/in/arshadali4) |
-| 🌐 **Portfolio** | Add your live portfolio URL here |
+| 🌐 **Portfolio** | https://arshadali04-portfolio.netlify.app/|
 | 📧 **Email** | arshadalia2703@gmail.com |
 
 </div>
