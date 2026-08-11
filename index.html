@@ -1,453 +1,391 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arshadali M Athani — Data Analyst</title>
-<meta name="description" content="Portfolio of Arshadali M Athani — Computer Science undergraduate specializing in data analysis, anomaly detection, and data privacy engineering.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arshadali M Athani — Data Analyst · Data Science · Web Developer</title>
+  <meta name="description" content="Portfolio of Arshadali M Athani — Data Analyst, Data Science learner, and Web Developer in Bengaluru. Projects in API security, financial data anonymization, dashboards, and interactive web applications.">
+  <meta name="author" content="Arshadali M Athani">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="canonical" href="https://arshadali.dev/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Arshadali M Athani — Data Analyst · Data Science · Web Developer">
+  <meta property="og:description" content="I turn messy data into clear decisions and build systems that make insights actionable.">
+  <meta property="og:url" content="https://arshadali.dev/">
+  <meta property="og:image" content="https://arshadali.dev/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Arshadali M Athani — Data Analyst">
+  <meta name="twitter:description" content="Data analysis, privacy engineering, and web development portfolio.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><text x='4' y='23' font-family='monospace' font-size='20' fill='%23f5a623'>A</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Arshadali M Athani","jobTitle":"Data Analyst / Data Science / Web Development","email":"mailto:arshadalia2703@gmail.com","address":"Bengaluru, India","sameAs":["https://github.com/Arshadali04","https://linkedin.com/in/arshadali4"]}</script>
 </head>
 <body>
 
-<!-- Background canvas: data-node network, mouse reactive -->
-<canvas id="bg-canvas"></canvas>
+  <!-- Skip -->
+  <a href="#main" class="skip">Skip to content</a>
 
-<!-- Progress indicator -->
-<div class="scroll-progress" id="scrollProgress"></div>
+  <!-- Header -->
+  <header class="header" id="header">
+    <a href="#top" class="header__logo" aria-label="Back to top">
+      <span class="header__letter">A</span>
+      <span class="header__dot"></span>
+    </a>
+    <nav class="header__nav" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="header__cta">Get in touch</a>
+    </nav>
+    <button class="header__toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span>
+    </button>
+  </header>
 
-<!-- Navigation -->
-<nav class="nav" id="nav">
-  <a href="#top" class="nav__mark">AA<span>.</span></a>
-  <ul class="nav__links">
-    <li><a href="#about" data-nav>About</a></li>
-    <li><a href="#skills" data-nav>Skills</a></li>
-    <li><a href="#work" data-nav>Work</a></li>
-    <li><a href="#journey" data-nav>Journey</a></li>
-    <li><a href="#credentials" data-nav>Credentials</a></li>
-    <li><a href="#contact" data-nav>Contact</a></li>
-  </ul>
-  <a href="#contact" class="nav__cta">Let's talk</a>
-  <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav aria-label="Mobile navigation">
+      <a href="#work" data-mobile-link>Work</a>
+      <a href="#skills" data-mobile-link>Skills</a>
+      <a href="#about" data-mobile-link>About</a>
+      <a href="#contact" data-mobile-link>Get in touch</a>
+    </nav>
+  </div>
 
-<main id="top">
+  <main id="main">
 
-  <!-- ============ HERO ============ -->
-  <section class="hero" id="hero">
-    <div class="hero__grid">
-
-      <div class="hero__intro">
-        <p class="eyebrow"><span class="eyebrow__dot"></span>Open to Data Analyst roles &middot; Bengaluru, India</p>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="top">
+      <div class="hero__content">
+        <div class="hero__tag">
+          <span class="hero__tag-dot"></span>
+          Open to Data Analyst roles · Bengaluru, India
+        </div>
         <h1 class="hero__title">
-          I turn <span class="hero__title-highlight">raw, messy data</span><br>
-          into decisions people<br>
-          can act on.
+          I turn raw data<br>
+          into <span class="hero__accent">clear decisions.</span>
         </h1>
         <p class="hero__sub">
-          Computer Science undergraduate at RVITM, building pipelines that clean, anonymize,
-          and explain data — from 10,000-record financial datasets to live API traffic streams.
-          National Finalist at Smart India Hackathon 2025, among 5,000+ competing teams.
+          Computer Science undergraduate building data pipelines, privacy systems,
+          and analytics dashboards that make information actually useful.
         </p>
         <div class="hero__actions">
-          <a href="#work" class="btn btn--primary">
-            <span>See the work</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a href="mailto:arshadalia2703@gmail.com" class="btn btn--ghost">
-            <span>arshadalia2703@gmail.com</span>
-          </a>
+          <a href="#work" class="btn btn--primary">See the work →</a>
+          <a href="#contact" class="btn btn--ghost">Let's talk</a>
+        </div>
+        <div class="hero__meta">
+          <div class="hero__stat">
+            <span class="hero__stat-val" data-count="10000">0</span><span class="hero__stat-suffix">+</span>
+            <span class="hero__stat-lbl">records anonymized</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-val" data-count="100000">0</span><span class="hero__stat-suffix">+</span>
+            <span class="hero__stat-lbl">rows analyzed</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-val" data-count="8.34" data-decimal="true">0</span>
+            <span class="hero__stat-lbl">CGPA / 10</span>
+          </div>
         </div>
       </div>
+      <div class="hero__viz">
+        <canvas id="heroViz" aria-label="Interactive scatter plot of technical skills"></canvas>
+        <div class="hero__viz-legend">
+          <span><i style="background:#f5a623"></i>Data</span>
+          <span><i style="background:#3b82f6"></i>Development</span>
+          <span><i style="background:#22c55e"></i>Tools</span>
+        </div>
+      </div>
+    </section>
 
-      <div class="hero__panel" id="heroPanel">
-        <div class="panel-card">
-          <div class="panel-card__head">
-            <span class="panel-card__label">dataset_health.py</span>
-            <div class="panel-card__dots"><i></i><i></i><i></i></div>
+    <!-- ===== WORK ===== -->
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__num">01</span>
+          <h2>Selected Work</h2>
+          <p>Three projects that demonstrate how I approach data problems — from raw input to actionable output.</p>
+        </div>
+
+        <!-- Project 1: Anonymization -->
+        <article class="project">
+          <div class="project__header">
+            <span class="project__tag">PRIVACY ENGINEERING</span>
+            <span class="project__date">Jun — Nov 2025</span>
           </div>
-
-          <div class="stat-row">
-            <div class="stat">
-              <span class="stat__value" data-count="10000" data-suffix="+">0</span>
-              <span class="stat__label">records anonymized in one pipeline</span>
+          <div class="project__grid">
+            <div class="project__info">
+              <h3>Data Anonymization System for Financial Datasets</h3>
+              <p class="project__desc">
+                A privacy-preserving pipeline that processes 10,000+ financial records,
+                applying K-Anonymity and L-Diversity to protect identity while retaining
+                over 90% statistical utility for downstream analysis.
+              </p>
+              <ul class="project__highlights">
+                <li>Automated anonymization with Python/Pandas — reduced manual effort by ~80%</li>
+                <li>Interactive Streamlit dashboard with CSV upload and export</li>
+                <li>Processing time: several minutes → under 30 seconds</li>
+              </ul>
+              <div class="project__tech">
+                <span>Python</span><span>Pandas</span><span>NumPy</span><span>Streamlit</span><span>Scikit-Learn</span><span>K-Anonymity</span><span>L-Diversity</span>
+              </div>
+              <a href="https://github.com/Arshadali04" target="_blank" rel="noopener" class="project__link">View on GitHub ↗</a>
             </div>
-            <div class="stat">
-              <span class="stat__value" data-count="90" data-suffix="%+">0</span>
-              <span class="stat__label">statistical utility retained</span>
+            <div class="project__chart">
+              <h4>Data Utility Comparison</h4>
+              <canvas id="chart1" aria-label="Bar chart showing data utility retained after anonymization"></canvas>
+              <p class="chart-caption">Statistical utility retained after anonymization pipeline</p>
             </div>
           </div>
+        </article>
 
-          <div class="mini-chart" aria-hidden="true">
-            <svg viewBox="0 0 280 90" class="mini-chart__svg" id="miniChart">
-              <polyline id="chartLine" points="" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <polygon id="chartFill" points="" fill="url(#chartGrad)" opacity="0.18"/>
-              <defs>
-                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.9"/>
-                  <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <g id="chartDots"></g>
-            </svg>
-            <span class="mini-chart__caption">API threat signals — flagged in real time via Isolation Forest</span>
+        <!-- Project 2: OLA -->
+        <article class="project">
+          <div class="project__header">
+            <span class="project__tag">DATA ANALYTICS</span>
+            <span class="project__date">2025</span>
           </div>
-
-          <div class="stat-row stat-row--secondary">
-            <div class="stat">
-              <span class="stat__value stat__value--amber" data-count="3" data-suffix="% nat'l">0</span>
-              <span class="stat__label">rank &middot; Smart India Hackathon 2025</span>
+          <div class="project__grid">
+            <div class="project__info">
+              <h3>OLA Ride Bookings Analytics</h3>
+              <p class="project__desc">
+                A five-page Power BI dashboard analyzing 100,000+ ride bookings.
+                Built a star-schema data model with DAX measures to monitor cancellation
+                rates, revenue, and vehicle performance.
+              </p>
+              <ul class="project__highlights">
+                <li>Star-schema data model using Power Query</li>
+                <li>SQL queries with window functions, CTEs, and aggregations</li>
+                <li>Five-page dashboard for cancellation, revenue, and vehicle analysis</li>
+              </ul>
+              <div class="project__tech">
+                <span>Power BI</span><span>SQL</span><span>DAX</span><span>Power Query</span><span>Excel</span>
+              </div>
+              <a href="https://github.com/Arshadali04" target="_blank" rel="noopener" class="project__link">View on GitHub ↗</a>
             </div>
-            <div class="stat">
-              <span class="stat__value" data-count="8.39" data-decimal="true">0</span>
-              <span class="stat__label">CGPA / 10</span>
+            <div class="project__chart">
+              <h4>Booking Trends</h4>
+              <canvas id="chart2" aria-label="Line chart showing ride booking volume over time"></canvas>
+              <p class="chart-caption">Monthly booking volume with cancellation overlay</p>
             </div>
           </div>
-        </div>
+        </article>
 
-        <div class="panel-tag panel-tag--1">K-Anonymity</div>
-        <div class="panel-tag panel-tag--2">Isolation Forest</div>
-        <div class="panel-tag panel-tag--3">SHA-256</div>
-      </div>
-
-    </div>
-
-    <div class="scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-hint__line"><i></i></div>
-    </div>
-  </section>
-
-  <!-- ============ ABOUT ============ -->
-  <section class="about" id="about">
-    <div class="section-head">
-      <span class="section-tag">01 — About</span>
-      <h2 class="section-title">Someone who'd rather clean a dataset<br>than guess at one.</h2>
-    </div>
-
-    <div class="about__body">
-      <p class="about__lead">
-        I'm a Computer Science undergraduate at RV Institute of Technology and Management,
-        Bengaluru, currently carrying an 8.39 CGPA and a habit of poking at datasets until
-        they tell the truth.
-      </p>
-      <p>
-        Most of my work sits at the intersection of privacy and pattern-finding. I've built a
-        pipeline that anonymizes financial records without wrecking their statistical value, and
-        an anomaly-detection layer that watches API traffic for SQL injection, XSS, and
-        brute-force attempts as they happen. Both projects taught me the same lesson: the
-        interesting part of data work usually isn't the model — it's the thirty decisions you make
-        before the model ever sees the data.
-      </p>
-      <p>
-        Outside coursework, I run technical operations for my college's event committee,
-        coordinating cross-functional teams across ten-plus fests with 500+ attendees each and
-        exactly zero technical failures. It's a different kind of data problem: reading a live
-        situation fast and not letting anything slip.
-      </p>
-
-      <div class="about__facts">
-        <div class="fact">
-          <span class="fact__label">Based in</span>
-          <span class="fact__value">Bengaluru, India</span>
-        </div>
-        <div class="fact">
-          <span class="fact__label">Studying</span>
-          <span class="fact__value">B.E. Computer Science, RVITM</span>
-        </div>
-        <div class="fact">
-          <span class="fact__label">Looking for</span>
-          <span class="fact__value">Entry-level Data Analyst roles</span>
-        </div>
-        <div class="fact">
-          <span class="fact__label">Recently</span>
-          <span class="fact__value">National Finalist, SIH 2025</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ SKILLS ============ -->
-  <section class="skills" id="skills">
-    <div class="section-head">
-      <span class="section-tag">02 — Capabilities</span>
-      <h2 class="section-title">What I actually reach for<br>when I open a dataset.</h2>
-    </div>
-
-    <div class="skills__interface">
-      <div class="skills__tabs" id="skillTabs" role="tablist">
-        <button class="skills__tab is-active" data-cat="languages" role="tab">Languages</button>
-        <button class="skills__tab" data-cat="analysis" role="tab">Analysis</button>
-        <button class="skills__tab" data-cat="visualization" role="tab">Visualization</button>
-        <button class="skills__tab" data-cat="ml" role="tab">Machine Learning</button>
-        <button class="skills__tab" data-cat="databases" role="tab">Databases</button>
-        <button class="skills__tab" data-cat="tools" role="tab">Tools</button>
-      </div>
-
-      <div class="skills__stage" id="skillStage">
-        <!-- populated by JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ PROJECTS ============ -->
-  <section class="work" id="work">
-    <div class="section-head">
-      <span class="section-tag">03 — Selected Work</span>
-      <h2 class="section-title">Two problems worth<br>writing pipelines for.</h2>
-    </div>
-
-    <div class="work__list">
-
-      <article class="project" id="project-1">
-        <div class="project__visual">
-          <div class="project__visual-inner">
-            <svg viewBox="0 0 200 160" class="project__diagram" aria-hidden="true">
-              <rect x="10" y="20" width="46" height="30" rx="4" class="pd-node"/>
-              <rect x="10" y="70" width="46" height="30" rx="4" class="pd-node"/>
-              <rect x="10" y="120" width="46" height="30" rx="4" class="pd-node"/>
-              <rect x="90" y="60" width="56" height="46" rx="6" class="pd-core"/>
-              <text x="118" y="88" class="pd-core-label" text-anchor="middle">K=10</text>
-              <path d="M56 35 H90 M108 60 V106 M56 85 H90 M56 135 H80 V106" class="pd-line"/>
-              <circle cx="170" cy="83" r="18" class="pd-output"/>
-              <path d="M146 83 H160" class="pd-line"/>
-              <text x="170" y="87" class="pd-output-label" text-anchor="middle">✓</text>
-            </svg>
+        <!-- Project 3: Zero Trust -->
+        <article class="project">
+          <div class="project__header">
+            <span class="project__tag">SECURITY</span>
+            <span class="project__date">Feb 2025 — Present</span>
           </div>
+          <div class="project__grid">
+            <div class="project__info">
+              <h3>Zero Trust Secure API Gateway with Attack Detection</h3>
+              <p class="project__desc">
+                A FastAPI gateway that structures backend request data and detects
+                abnormal patterns in real time using Isolation Forest anomaly detection.
+              </p>
+              <ul class="project__highlights">
+                <li>Trained Isolation Forest on API traffic for SQL injection, XSS, brute-force detection</li>
+                <li>Structured request data with SQL for detection logic</li>
+                <li>Interactive dashboard for threat visualization</li>
+              </ul>
+              <div class="project__tech">
+                <span>Python</span><span>FastAPI</span><span>Scikit-Learn</span><span>SQL</span><span>Isolation Forest</span>
+              </div>
+              <a href="https://github.com/Arshadali04" target="_blank" rel="noopener" class="project__link">View on GitHub ↗</a>
+            </div>
+            <div class="project__chart">
+              <h4>Threat Detection Coverage</h4>
+              <canvas id="chart3" aria-label="Radar chart showing security coverage across attack types"></canvas>
+              <p class="chart-caption">Detection coverage across attack vectors</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="section section--alt" id="skills">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__num">02</span>
+          <h2>Technical Skills</h2>
+          <p>Tools and technologies I use to turn data into decisions.</p>
         </div>
-        <div class="project__info">
-          <span class="project__period">Jun 2025 — Nov 2025</span>
-          <h3 class="project__title">Data Anonymization System for Financial Datasets</h3>
-          <p class="project__desc">
-            A pipeline that takes raw financial records and returns a dataset you can actually
-            share — with identity-revealing fields protected and the underlying statistics
-            still intact for downstream analysis.
-          </p>
-          <ul class="project__points">
-            <li>Processes 10,000+ financial records, applying K-Anonymity (K=10) and L-Diversity (L=2) across 8+ sensitive fields, including Aadhaar numbers and bank account data.</li>
-            <li>Automates anonymization with deterministic SHA-256 hashing in Python and Pandas — cutting manual effort by 80% while keeping 90%+ statistical utility for analysis.</li>
-            <li>Ships as an interactive Streamlit dashboard with CSV upload, adjustable privacy levels, and export — bringing processing time down from minutes to under 30 seconds.</li>
-          </ul>
-          <div class="project__tech">
-            <span>Python</span><span>Pandas</span><span>Streamlit</span><span>Scikit-Learn</span><span>K-Anonymity</span><span>L-Diversity</span>
-          </div>
-          <div class="project__actions">
-            <a href="https://github.com/Arshadali04" target="_blank" rel="noopener" class="btn btn--small btn--dark">
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.49c-2.22.48-2.69-1.07-2.69-1.07-.36-.92-.89-1.16-.89-1.16-.72-.5.06-.49.06-.49.8.06 1.22.82 1.22.82.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.82a7.65 7.65 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-              <span>GitHub</span>
-            </a>
-            <button class="btn btn--small btn--ghost" data-toggle-detail="project-1-detail">
-              <span>Case study</span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-          <div class="project__detail" id="project-1-detail">
-            <p>
-              The hardest part wasn't the hashing — it was deciding what "anonymous" actually
-              means for a mixed dataset of names, account numbers, and behavioral fields.
-              K-Anonymity groups records so no individual stands out from at least nine others
-              with the same quasi-identifiers; L-Diversity then makes sure each group still has
-              enough variation in sensitive values that grouping alone doesn't leak information.
-              The Streamlit layer exists so a non-technical stakeholder can tune that privacy
-              level themselves and see the utility trade-off before exporting.
+        <div class="skills-grid" id="skillsGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__num">03</span>
+          <h2>About Me</h2>
+        </div>
+        <div class="about__grid">
+          <div class="about__text">
+            <p class="about__lead">
+              I'm a Computer Science undergraduate at RV Institute of Technology and Management,
+              Bengaluru, currently carrying an 8.34 CGPA and a habit of poking at datasets until
+              they tell the truth.
             </p>
-          </div>
-        </div>
-      </article>
-
-      <article class="project project--reverse" id="project-2">
-        <div class="project__visual">
-          <div class="project__visual-inner">
-            <svg viewBox="0 0 200 160" class="project__diagram" aria-hidden="true">
-              <path d="M20 130 L50 80 L80 110 L110 50 L140 90 L180 30" class="pd-trace"/>
-              <circle cx="20" cy="130" r="4" class="pd-dot"/>
-              <circle cx="50" cy="80" r="4" class="pd-dot"/>
-              <circle cx="80" cy="110" r="4" class="pd-dot pd-dot--alert"/>
-              <circle cx="110" cy="50" r="4" class="pd-dot"/>
-              <circle cx="140" cy="90" r="4" class="pd-dot"/>
-              <circle cx="180" cy="30" r="4" class="pd-dot"/>
-              <rect x="62" y="118" width="36" height="18" rx="3" class="pd-flag"/>
-              <text x="80" y="130" class="pd-flag-label" text-anchor="middle">SQLi</text>
-            </svg>
-          </div>
-        </div>
-        <div class="project__info">
-          <span class="project__period">Feb 2025 — Present</span>
-          <h3 class="project__title">Zero Trust Secure API Gateway with Attack Detection</h3>
-          <p class="project__desc">
-            An API gateway that doesn't just log traffic — it learns what normal traffic looks
-            like and flags the requests that don't fit, in real time.
-          </p>
-          <ul class="project__points">
-            <li>Trains an Isolation Forest model on API traffic to detect SQL injection, XSS, and brute-force patterns, combining statistical scoring with rule-based filtering.</li>
-            <li>Visualizes traffic and threat data on an interactive dashboard, turning raw request logs into insights a non-technical stakeholder can actually use.</li>
-            <li>Structures backend request data with SQL to feed detection logic and support pattern analysis at query time.</li>
-          </ul>
-          <div class="project__tech">
-            <span>Python</span><span>FastAPI</span><span>Scikit-Learn</span><span>SQL</span><span>Isolation Forest</span>
-          </div>
-          <div class="project__actions">
-            <a href="https://github.com/Arshadali04" target="_blank" rel="noopener" class="btn btn--small btn--dark">
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.49c-2.22.48-2.69-1.07-2.69-1.07-.36-.92-.89-1.16-.89-1.16-.72-.5.06-.49.06-.49.8.06 1.22.82 1.22.82.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.82a7.65 7.65 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-              <span>GitHub</span>
-            </a>
-            <button class="btn btn--small btn--ghost" data-toggle-detail="project-2-detail">
-              <span>Case study</span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-          <div class="project__detail" id="project-2-detail">
             <p>
-              Isolation Forest works by isolating points through random splits — anomalies take
-              fewer splits to isolate than normal traffic, which makes it cheap to score requests
-              as they arrive instead of waiting on a labeled training set of "known attacks."
-              I paired that statistical layer with rule-based checks for known SQL injection and
-              XSS signatures, so the system catches both the attacks it's seen before and the
-              ones that just look statistically wrong.
+              Most of my work sits at the intersection of privacy and pattern-finding. I've built a
+              pipeline that anonymizes financial records without wrecking their statistical value, and
+              an anomaly-detection layer that watches API traffic for SQL injection, XSS, and
+              brute-force attempts as they happen.
             </p>
+            <p>
+              Outside coursework, I run technical operations for my college's event committee,
+              coordinating cross-functional teams across ten-plus fests with 500+ attendees each and
+              exactly zero technical failures.
+            </p>
+            <div class="about__certs">
+              <h4>Certifications</h4>
+              <div class="about__cert">
+                <span class="about__cert-badge">D</span>
+                <div>
+                  <strong>Data Analytics Job Simulation</strong>
+                  <span>Deloitte Australia · Forage</span>
+                </div>
+              </div>
+              <div class="about__cert">
+                <span class="about__cert-badge">T</span>
+                <div>
+                  <strong>Data Visualization: Empowering Business</strong>
+                  <span>Tata Group · Forage</span>
+                </div>
+              </div>
+              <div class="about__cert">
+                <span class="about__cert-badge">N</span>
+                <div>
+                  <strong>Python for Data Science</strong>
+                  <span>NPTEL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about__timeline">
+            <h4>Timeline</h4>
+            <div class="timeline">
+              <div class="timeline__item">
+                <span class="timeline__year">2024</span>
+                <div class="timeline__content">
+                  <strong>Started B.E. Computer Science</strong>
+                  <p>RVITM, Bengaluru</p>
+                </div>
+              </div>
+              <div class="timeline__item">
+                <span class="timeline__year">2025</span>
+                <div class="timeline__content">
+                  <strong>Technical Lead, Organizing Committee</strong>
+                  <p>10+ fests, 500+ attendees each, zero technical failures</p>
+                </div>
+              </div>
+              <div class="timeline__item">
+                <span class="timeline__year">2025</span>
+                <div class="timeline__content">
+                  <strong>Built Financial Data Anonymization Pipeline</strong>
+                  <p>10,000+ records · K-Anonymity · L-Diversity · Streamlit dashboard</p>
+                </div>
+              </div>
+              <div class="timeline__item">
+                <span class="timeline__year">2025</span>
+                <div class="timeline__content">
+                  <strong>Built OLA Ride Analytics Dashboard</strong>
+                  <p>100,000+ rows · Power BI · SQL · DAX</p>
+                </div>
+              </div>
+              <div class="timeline__item">
+                <span class="timeline__year">2026</span>
+                <div class="timeline__content">
+                  <strong>Building Zero Trust API Gateway</strong>
+                  <p>FastAPI · Isolation Forest · Real-time threat detection</p>
+                </div>
+              </div>
+              <div class="timeline__item">
+                <span class="timeline__year">2027</span>
+                <div class="timeline__content">
+                  <strong>Graduating — B.E. Computer Science</strong>
+                  <p>Targeting Data Analyst / Data Engineer roles</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </article>
+      </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- ============ JOURNEY ============ -->
-  <section class="journey" id="journey">
-    <div class="section-head">
-      <span class="section-tag">04 — Journey</span>
-      <h2 class="section-title">How I got here.</h2>
-    </div>
-
-    <div class="timeline" id="timeline">
-      <div class="timeline__line"></div>
-
-      <div class="timeline__item">
-        <div class="timeline__marker"></div>
-        <div class="timeline__content">
-          <span class="timeline__date">May 2021 — Mar 2023</span>
-          <h3>Pre-University Education — Physics, Chemistry, Mathematics</h3>
-          <p>KLE Independent PU College, Belgaum</p>
+    <!-- ===== CONTACT ===== -->
+    <section class="section section--alt" id="contact">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__num">04</span>
+          <h2>Get in Touch</h2>
+          <p>Have a project, an opportunity, or just want to talk data? I'm here.</p>
+        </div>
+        <div class="contact__grid">
+          <div class="contact__links">
+            <a href="mailto:arshadalia2703@gmail.com" class="contact__link">
+              <span class="contact__link-label">Email</span>
+              <span class="contact__link-value">arshadalia2703@gmail.com</span>
+            </a>
+            <a href="https://linkedin.com/in/arshadali4" target="_blank" rel="noopener" class="contact__link">
+              <span class="contact__link-label">LinkedIn</span>
+              <span class="contact__link-value">linkedin.com/in/arshadali4</span>
+            </a>
+            <a href="https://github.com/Arshadali04" target="_blank" rel="noopener" class="contact__link">
+              <span class="contact__link-label">GitHub</span>
+              <span class="contact__link-value">github.com/Arshadali04</span>
+            </a>
+            <a href="tel:+919686682703" class="contact__link">
+              <span class="contact__link-label">Phone</span>
+              <span class="contact__link-value">+91 96866 82703</span>
+            </a>
+            <div class="contact__link contact__link--static">
+              <span class="contact__link-label">Location</span>
+              <span class="contact__link-value">Bengaluru, India</span>
+            </div>
+          </div>
+          <form class="contact__form" id="contactForm" novalidate>
+            <div class="form__group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="form__group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+            <div class="form__group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full">Send Message →</button>
+            <p class="form__note">Opens your email client. No backend required.</p>
+          </form>
         </div>
       </div>
+    </section>
+  </main>
 
-      <div class="timeline__item">
-        <div class="timeline__marker"></div>
-        <div class="timeline__content">
-          <span class="timeline__date">Aug 2023 — Jun 2027</span>
-          <h3>B.E. in Computer Science &amp; Engineering</h3>
-          <p>RV Institute of Technology and Management, Bengaluru &middot; CGPA 8.34 / 10</p>
-        </div>
-      </div>
-
-      <div class="timeline__item">
-        <div class="timeline__marker"></div>
-        <div class="timeline__content">
-          <span class="timeline__date">Mar 2024 — Present</span>
-          <h3>Technical Lead, Organizing Committee</h3>
-          <p>RVITM &middot; Coordinated design and technical operations across 10+ college events, 500+ attendees each, with zero technical failures.</p>
-        </div>
-      </div>
-
-      <div class="timeline__item">
-        <div class="timeline__marker"></div>
-        <div class="timeline__content">
-          <span class="timeline__date">Jun 2025 — Nov 2025</span>
-          <h3>Built the financial data anonymization pipeline</h3>
-          <p>10,000+ records processed &middot; K-Anonymity + L-Diversity &middot; 90%+ utility retained</p>
-        </div>
-      </div>
-
-      <div class="timeline__item timeline__item--highlight">
-        <div class="timeline__marker"></div>
-        <div class="timeline__content">
-          <span class="timeline__date">2025</span>
-          <h3>National Finalist — Smart India Hackathon</h3>
-          <p>Ranked top 3% nationally among 5,000+ teams; built a government solution with Python, MongoDB, and visualization libraries.</p>
-        </div>
-      </div>
-
-      <div class="timeline__item">
-        <div class="timeline__marker"></div>
-        <div class="timeline__content">
-          <span class="timeline__date">Feb 2025 — Present</span>
-          <h3>Building the Zero Trust API Gateway</h3>
-          <p>Isolation Forest anomaly detection on live API traffic</p>
-        </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span>© 2026 Arshadali M Athani</span>
+        <a href="#top">Back to top ↑</a>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <!-- ============ CERTIFICATIONS ============ -->
-  <section class="credentials" id="credentials">
-    <div class="section-head">
-      <span class="section-tag">05 — Credentials</span>
-      <h2 class="section-title">Coursework I put to use.</h2>
-    </div>
-
-    <div class="credentials__grid">
-      <div class="credential">
-        <div class="credential__mark">D</div>
-        <h3>Data Analytics Job Simulation</h3>
-        <p>Deloitte Australia, via Forage</p>
-      </div>
-      <div class="credential">
-        <div class="credential__mark">T</div>
-        <h3>Data Visualization: Empowering Business with Effective Insights</h3>
-        <p>Tata Group, via Forage</p>
-      </div>
-      <div class="credential">
-        <div class="credential__mark">N</div>
-        <h3>Python for Data Science</h3>
-        <p>NPTEL</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CONTACT ============ -->
-  <section class="contact" id="contact">
-    <div class="contact__card">
-      <div class="contact__left">
-        <span class="section-tag section-tag--light">06 — Contact</span>
-        <h2 class="contact__title">Have a dataset that<br>needs a second look?</h2>
-        <p class="contact__sub">I'm currently looking for entry-level Data Analyst roles in tech and software. Reach out — I reply fast.</p>
-      </div>
-      <div class="contact__right">
-        <a class="contact__row" href="mailto:arshadalia2703@gmail.com">
-          <span class="contact__label">Email</span>
-          <span class="contact__value">arshadalia2703@gmail.com</span>
-        </a>
-        <a class="contact__row" href="tel:+919686682703">
-          <span class="contact__label">Phone</span>
-          <span class="contact__value">+91 96866 82703</span>
-        </a>
-        <a class="contact__row" href="https://linkedin.com/in/arshadali4" target="_blank" rel="noopener">
-          <span class="contact__label">LinkedIn</span>
-          <span class="contact__value">linkedin.com/in/arshadali4</span>
-        </a>
-        <a class="contact__row" href="https://github.com/Arshadali04" target="_blank" rel="noopener">
-          <span class="contact__label">GitHub</span>
-          <span class="contact__value">github.com/Arshadali04</span>
-        </a>
-        <div class="contact__row contact__row--static">
-          <span class="contact__label">Based in</span>
-          <span class="contact__value">Bengaluru, India</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <span>&copy; 2026 Arshadali M Athani.</span>
-  <a href="#top" class="footer__top">Back to top ↑</a>
-</footer>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
