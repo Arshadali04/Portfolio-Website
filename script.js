@@ -1,459 +1,479 @@
 /* ============================================================
-   ARSHADALI M ATHANI — PORTFOLIO
-   Vanilla JS: background node network, scroll reveals,
-   counters, skills stage, project detail toggles, nav behavior.
+   PORTFOLIO — Clean, bug-free interactions
    ============================================================ */
-
 (function () {
   'use strict';
 
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------------------------------------------------------
-     1. BACKGROUND — data node network canvas
-     A quiet field of "data points" that link when close and
-     drift toward the cursor. Represents the subject (data
-     analysis / pattern-finding) instead of a decorative blob.
-  --------------------------------------------------------- */
-  function initBackground() {
-    var canvas = document.getElementById('bg-canvas');
+  /* ---- Helpers ---- */
+  function $(s, c) { return (c || document).querySelector(s); }
+  function $$(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
+
+  /* ============================================================
+     1. HERO SCATTER PLOT — meaningful data visualization
+     ============================================================ */
+  function initHeroViz() {
+    var canvas = $('#heroViz');
     if (!canvas) return;
     var ctx = canvas.getContext('2d');
-    var w, h, dpr;
-    var nodes = [];
-    var mouse = { x: null, y: null, active: false };
-    var NODE_COUNT;
-    var LINK_DIST = 130;
-    var MOUSE_DIST = 170;
+    if (!ctx) return;
+
+    var skills = [
+      { name: 'Python', x: 0.85, y: 0.9, cat: 'data' },
+      { name: 'SQL', x: 0.75, y: 0.85, cat: 'data' },
+      { name: 'Pandas', x: 0.8, y: 0.88, cat: 'data' },
+      { name: 'NumPy', x: 0.7, y: 0.78, cat: 'data' },
+      { name: 'Scikit-learn', x: 0.72, y: 0.72, cat: 'data' },
+      { name: 'FastAPI', x: 0.68, y: 0.7, cat: 'dev' },
+      { name: 'Power BI', x: 0.55, y: 0.82, cat: 'data' },
+      { name: 'Tableau', x: 0.5, y: 0.75, cat: 'data' },
+      { name: 'Matplotlib', x: 0.65, y: 0.76, cat: 'data' },
+      { name: 'Streamlit', x: 0.58, y: 0.68, cat: 'dev' },
+      { name: 'MySQL', x: 0.6, y: 0.8, cat: 'data' },
+      { name: 'MongoDB', x: 0.45, y: 0.55, cat: 'data' },
+      { name: 'HTML/CSS', x: 0.4, y: 0.85, cat: 'dev' },
+      { name: 'JavaScript', x: 0.55, y: 0.65, cat: 'dev' },
+      { name: 'Git/GitHub', x: 0.35, y: 0.88, cat: 'tool' },
+      { name: 'Docker', x: 0.5, y: 0.5, cat: 'tool' },
+      { name: 'AWS', x: 0.42, y: 0.45, cat: 'tool' },
+      { name: 'Linux', x: 0.38, y: 0.82, cat: 'tool' },
+      { name: 'VS Code', x: 0.3, y: 0.9, cat: 'tool' },
+      { name: 'Jupyter', x: 0.62, y: 0.85, cat: 'tool' },
+      { name: 'Excel', x: 0.35, y: 0.78, cat: 'data' },
+      { name: 'Plotly', x: 0.6, y: 0.7, cat: 'data' },
+      { name: 'Seaborn', x: 0.55, y: 0.72, cat: 'data' },
+      { name: 'Bash', x: 0.45, y: 0.7, cat: 'dev' },
+    ];
+
+    var catColors = { data: '#f5a623', dev: '#3b82f6', tool: '#22c55e' };
+    var W, H, dpr, points = [], hovered = null;
 
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = window.innerWidth;
-      h = window.innerHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      canvas.style.width = w + 'px';
-      canvas.style.height = h + 'px';
+      var rect = canvas.getBoundingClientRect();
+      W = rect.width; H = rect.height;
+      canvas.width = W * dpr; canvas.height = H * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      NODE_COUNT = Math.max(28, Math.min(70, Math.floor((w * h) / 26000)));
-      buildNodes();
+      buildPoints();
     }
 
-    function buildNodes() {
-      nodes = [];
-      for (var i = 0; i < NODE_COUNT; i++) {
-        nodes.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.25,
-          vy: (Math.random() - 0.5) * 0.25,
-          r: Math.random() * 1.6 + 1.2,
-          pulse: Math.random() * Math.PI * 2
-        });
-      }
-    }
-
-    function step() {
-      ctx.clearRect(0, 0, w, h);
-
-      for (var i = 0; i < nodes.length; i++) {
-        var n = nodes[i];
-        n.x += n.vx;
-        n.y += n.vy;
-        n.pulse += 0.02;
-
-        if (n.x < -20) n.x = w + 20;
-        if (n.x > w + 20) n.x = -20;
-        if (n.y < -20) n.y = h + 20;
-        if (n.y > h + 20) n.y = -20;
-
-        if (mouse.active) {
-          var dx = mouse.x - n.x, dy = mouse.y - n.y;
-          var dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < MOUSE_DIST) {
-            var force = (1 - dist / MOUSE_DIST) * 0.02;
-            n.x += dx * force;
-            n.y += dy * force;
-          }
-        }
-      }
-
-      // links
-      for (var i = 0; i < nodes.length; i++) {
-        for (var j = i + 1; j < nodes.length; j++) {
-          var a = nodes[i], b = nodes[j];
-          var dx = a.x - b.x, dy = a.y - b.y;
-          var dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < LINK_DIST) {
-            var op = (1 - dist / LINK_DIST) * 0.16;
-            ctx.strokeStyle = 'rgba(56, 96, 247,' + op + ')';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // nodes
-      for (var i = 0; i < nodes.length; i++) {
-        var n = nodes[i];
-        var glow = 0.55 + Math.sin(n.pulse) * 0.25;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(56, 96, 247,' + glow + ')';
-        ctx.fill();
-      }
-
-      if (!reduceMotion) requestAnimationFrame(step);
-    }
-
-    window.addEventListener('resize', debounce(resize, 150));
-    window.addEventListener('mousemove', function (e) {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-      mouse.active = true;
-    });
-    window.addEventListener('mouseleave', function () { mouse.active = false; });
-    window.addEventListener('touchmove', function (e) {
-      if (e.touches && e.touches[0]) {
-        mouse.x = e.touches[0].clientX;
-        mouse.y = e.touches[0].clientY;
-        mouse.active = true;
-      }
-    }, { passive: true });
-
-    resize();
-    if (reduceMotion) {
-      step(); // draw one static frame
-    } else {
-      requestAnimationFrame(step);
-    }
-  }
-
-  function debounce(fn, wait) {
-    var t;
-    return function () {
-      clearTimeout(t);
-      var args = arguments, ctx = this;
-      t = setTimeout(function () { fn.apply(ctx, args); }, wait);
-    };
-  }
-
-  /* ---------------------------------------------------------
-     2. NAV — scroll shadow, active link, mobile toggle
-  --------------------------------------------------------- */
-  function initNav() {
-    var nav = document.getElementById('nav');
-    var toggle = document.getElementById('navToggle');
-    var links = document.querySelectorAll('[data-nav]');
-    var sections = Array.prototype.map.call(links, function (l) {
-      return document.querySelector(l.getAttribute('href'));
-    });
-
-    toggle.addEventListener('click', function () {
-      nav.classList.toggle('is-open');
-    });
-    links.forEach(function (l) {
-      l.addEventListener('click', function () { nav.classList.remove('is-open'); });
-    });
-
-    function onScroll() {
-      var scrollY = window.scrollY + 160;
-      var current = null;
-      sections.forEach(function (sec, i) {
-        if (sec && sec.offsetTop <= scrollY) current = links[i];
+    function buildPoints() {
+      points = skills.map(function (s) {
+        return { x: s.x * (W - 80) + 40, y: (1 - s.y) * (H - 80) + 40, r: 5, name: s.name, cat: s.cat, tx: s.x * (W - 80) + 40, ty: (1 - s.y) * (H - 80) + 40 };
       });
-      links.forEach(function (l) { l.classList.remove('is-active'); });
-      if (current) current.classList.add('is-active');
-
-      // scroll progress bar
-      var doc = document.documentElement;
-      var scrollTop = doc.scrollTop || document.body.scrollTop;
-      var scrollHeight = (doc.scrollHeight || document.body.scrollHeight) - doc.clientHeight;
-      var pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-      var bar = document.getElementById('scrollProgress');
-      if (bar) bar.style.width = pct + '%';
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      // grid lines
+      ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+      ctx.lineWidth = 1;
+      for (var i = 0; i <= 4; i++) {
+        var x = 40 + (i / 4) * (W - 80);
+        ctx.beginPath(); ctx.moveTo(x, 40); ctx.lineTo(x, H - 40); ctx.stroke();
+        var y = 40 + (i / 4) * (H - 80);
+        ctx.beginPath(); ctx.moveTo(40, y); ctx.lineTo(W - 40, y); ctx.stroke();
+      }
+
+      // axis labels
+      ctx.fillStyle = '#555';
+      ctx.font = '10px "JetBrains Mono", monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('COMPLEXITY →', W / 2, H - 10);
+      ctx.save();
+      ctx.translate(12, H / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillText('PROFICIENCY →', 0, 0);
+      ctx.restore();
+
+      // points
+      for (var i = 0; i < points.length; i++) {
+        var p = points[i];
+        var isHov = (hovered === i);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, isHov ? 8 : 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = catColors[p.cat];
+        ctx.globalAlpha = isHov ? 1 : 0.7;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+
+        if (isHov) {
+          ctx.fillStyle = '#e8e8e8';
+          ctx.font = '600 11px "Inter", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(p.name, p.x, p.y - 14);
+        }
+      }
+    }
+
+    function onMove(e) {
+      var rect = canvas.getBoundingClientRect();
+      var mx = e.clientX - rect.left;
+      var my = e.clientY - rect.top;
+      hovered = null;
+      for (var i = 0; i < points.length; i++) {
+        var dx = mx - points[i].x, dy = my - points[i].y;
+        if (Math.sqrt(dx * dx + dy * dy) < 14) { hovered = i; break; }
+      }
+      canvas.style.cursor = hovered !== null ? 'pointer' : 'default';
+      draw();
+    }
+
+    canvas.addEventListener('mousemove', onMove);
+    canvas.addEventListener('mouseleave', function () { hovered = null; draw(); });
+    window.addEventListener('resize', resize);
+    resize();
+    if (RM) draw();
   }
 
-  /* ---------------------------------------------------------
-     3. SCROLL REVEALS — IntersectionObserver
-  --------------------------------------------------------- */
-  function initReveals() {
-    var targets = document.querySelectorAll(
-      '.about__body, .about__facts, .skills__interface, .project, .timeline__item, .credential, .contact__card, .section-head'
-    );
+  /* ============================================================
+     2. PROJECT CHARTS — Chart.js
+     ============================================================ */
+  function initCharts() {
+    if (typeof Chart === 'undefined') {
+      // Chart.js not loaded (defer), retry after load
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCharts);
+      }
+      return;
+    }
+
+    Chart.defaults.color = '#999';
+    Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
+    Chart.defaults.font.family = "'JetBrains Mono', monospace";
+    Chart.defaults.font.size = 10;
+
+    // Chart 1: Anonymization utility
+    var c1 = $('#chart1');
+    if (c1) {
+      new Chart(c1, {
+        type: 'bar',
+        data: {
+          labels: ['Identity\nProtection', 'Statistical\nUtility', 'Data\nVolume', 'Processing\nSpeed'],
+          datasets: [{
+            label: 'Before',
+            data: [10, 100, 100, 15],
+            backgroundColor: 'rgba(255,255,255,0.08)',
+            borderColor: 'rgba(255,255,255,0.15)',
+            borderWidth: 1,
+            borderRadius: 3,
+          }, {
+            label: 'After',
+            data: [85, 91, 97, 95],
+            backgroundColor: 'rgba(245,166,35,0.7)',
+            borderColor: '#f5a623',
+            borderWidth: 1,
+            borderRadius: 3,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'top', labels: { boxWidth: 12, padding: 12 } } },
+          scales: {
+            y: { beginAtZero: true, max: 110, ticks: { callback: function (v) { return v + '%'; } } },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+    }
+
+    // Chart 2: OLA trends
+    var c2 = $('#chart2');
+    if (c2) {
+      new Chart(c2, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          datasets: [{
+            label: 'Bookings',
+            data: [8200, 7800, 9100, 10200, 11500, 12800, 14200, 13600, 12100, 11800, 10900, 13200],
+            borderColor: '#3b82f6',
+            backgroundColor: 'rgba(59,130,246,0.08)',
+            fill: true,
+            tension: 0.4,
+            pointRadius: 2,
+            pointHoverRadius: 5,
+            borderWidth: 2,
+          }, {
+            label: 'Cancellations',
+            data: [1100, 1050, 1200, 1350, 1480, 1620, 1780, 1710, 1540, 1490, 1400, 1680],
+            borderColor: '#ef4444',
+            backgroundColor: 'rgba(239,68,68,0.06)',
+            fill: true,
+            tension: 0.4,
+            pointRadius: 2,
+            pointHoverRadius: 5,
+            borderWidth: 2,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'top', labels: { boxWidth: 12, padding: 12 } } },
+          scales: {
+            y: { beginAtZero: true, ticks: { callback: function (v) { return (v / 1000).toFixed(0) + 'k'; } } },
+            x: { grid: { display: false } }
+          },
+          interaction: { intersect: false, mode: 'index' }
+        }
+      });
+    }
+
+    // Chart 3: Zero Trust radar
+    var c3 = $('#chart3');
+    if (c3) {
+      new Chart(c3, {
+        type: 'radar',
+        data: {
+          labels: ['SQL Injection', 'XSS', 'Brute Force', 'Anomaly', 'Authentication', 'Logging'],
+          datasets: [{
+            label: 'Detection Coverage',
+            data: [85, 78, 92, 88, 95, 90],
+            backgroundColor: 'rgba(245,166,35,0.15)',
+            borderColor: '#f5a623',
+            borderWidth: 2,
+            pointBackgroundColor: '#f5a623',
+            pointRadius: 3,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            r: {
+              beginAtZero: true,
+              max: 100,
+              ticks: { display: false },
+              grid: { color: 'rgba(255,255,255,0.06)' },
+              pointLabels: { font: { size: 10, family: "'JetBrains Mono', monospace" }, color: '#999' }
+            }
+          }
+        }
+      });
+    }
+  }
+
+  /* ============================================================
+     3. SKILLS GRID
+     ============================================================ */
+  function initSkills() {
+    var host = $('#skillsGrid');
+    if (!host) return;
+
+    var categories = [
+      { title: 'Languages', skills: [
+        { name: 'Python', level: 5 },
+        { name: 'SQL', level: 4 },
+        { name: 'Bash', level: 3 },
+        { name: 'JavaScript', level: 3 },
+      ]},
+      { title: 'Data Processing', skills: [
+        { name: 'Pandas', level: 5 },
+        { name: 'NumPy', level: 4 },
+        { name: 'Scikit-Learn', level: 4 },
+        { name: 'Data Cleaning', level: 5 },
+        { name: 'EDA', level: 4 },
+        { name: 'Feature Engineering', level: 3 },
+      ]},
+      { title: 'Visualization', skills: [
+        { name: 'Power BI', level: 4 },
+        { name: 'Tableau', level: 3 },
+        { name: 'Matplotlib', level: 4 },
+        { name: 'Streamlit', level: 4 },
+        { name: 'Plotly', level: 3 },
+      ]},
+      { title: 'Infrastructure', skills: [
+        { name: 'MySQL', level: 4 },
+        { name: 'MongoDB', level: 3 },
+        { name: 'Git / GitHub', level: 4 },
+        { name: 'Docker', level: 3 },
+        { name: 'AWS', level: 3 },
+        { name: 'Linux', level: 4 },
+        { name: 'VS Code', level: 5 },
+      ]},
+    ];
+
+    categories.forEach(function (cat) {
+      var el = document.createElement('div');
+      el.className = 'skill-category';
+      var itemsHTML = cat.skills.map(function (s) {
+        var dots = '';
+        for (var i = 0; i < 5; i++) {
+          dots += '<span class="' + (i < s.level ? 'filled' : '') + '"></span>';
+        }
+        return '<div class="skill-item"><span class="skill-item__name">' + s.name + '</span><span class="skill-item__level">' + dots + '</span></div>';
+      }).join('');
+      el.innerHTML = '<h3 class="skill-category__title">' + cat.title + '</h3><div class="skill-category__items">' + itemsHTML + '</div>';
+      host.appendChild(el);
+    });
+  }
+
+  /* ============================================================
+     4. COUNTER ANIMATION
+     ============================================================ */
+  function initCounters() {
+    var els = $$('[data-count]');
+    if (!els.length) return;
+
+    if (RM) {
+      els.forEach(function (el) {
+        var target = parseFloat(el.getAttribute('data-count'));
+        var dec = el.getAttribute('data-decimal') === 'true';
+        el.textContent = dec ? target.toFixed(2) : Math.round(target).toLocaleString('en-IN');
+      });
+      return;
+    }
+
+    var observed = false;
+    var obs = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting && !observed) {
+        observed = true;
+        els.forEach(function (el) {
+          var target = parseFloat(el.getAttribute('data-count'));
+          var dec = el.getAttribute('data-decimal') === 'true';
+          var dur = 1800;
+          var t0 = null;
+          function frame(ts) {
+            if (!t0) t0 = ts;
+            var p = Math.min((ts - t0) / dur, 1);
+            var ease = 1 - Math.pow(1 - p, 3);
+            el.textContent = dec ? (target * ease).toFixed(2) : Math.round(target * ease).toLocaleString('en-IN');
+            if (p < 1) requestAnimationFrame(frame);
+          }
+          requestAnimationFrame(frame);
+        });
+        obs.disconnect();
+      }
+    }, { threshold: 0.3 });
+    obs.observe(els[0].closest('.hero__meta') || els[0]);
+  }
+
+  /* ============================================================
+     5. SCROLL REVEAL
+     ============================================================ */
+  function initReveal() {
+    var targets = $$('.section__header, .project, .about__lead, .about__text p, .about__certs, .about__timeline, .contact__grid, .skills-grid');
     targets.forEach(function (t) { t.classList.add('reveal'); });
 
-    if (!('IntersectionObserver' in window)) {
-      targets.forEach(function (t) { t.classList.add('is-visible'); });
+    if (RM) {
+      targets.forEach(function (t) { t.classList.add('visible'); });
       return;
     }
 
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-
-    targets.forEach(function (t) { io.observe(t); });
-  }
-
-  /* ---------------------------------------------------------
-     4. HERO STAT COUNTERS
-  --------------------------------------------------------- */
-  function initCounters() {
-    var stats = document.querySelectorAll('.stat__value');
-    var done = false;
-
-    function animate() {
-      if (done) return;
-      done = true;
-      stats.forEach(function (el) {
-        var target = parseFloat(el.getAttribute('data-count'));
-        var suffix = el.getAttribute('data-suffix') || '';
-        var isDecimal = el.getAttribute('data-decimal') === 'true';
-        var start = 0;
-        var duration = 1400;
-        var startTime = null;
-
-        function frame(ts) {
-          if (!startTime) startTime = ts;
-          var progress = Math.min((ts - startTime) / duration, 1);
-          var eased = 1 - Math.pow(1 - progress, 3);
-          var val = start + (target - start) * eased;
-          el.textContent = (isDecimal ? val.toFixed(2) : Math.round(val).toLocaleString('en-IN')) + suffix;
-          if (progress < 1) requestAnimationFrame(frame);
-        }
-        requestAnimationFrame(frame);
-      });
-    }
-
-    var panel = document.getElementById('heroPanel');
-    if (!panel) return;
-    if (!('IntersectionObserver' in window)) { animate(); return; }
-    var io = new IntersectionObserver(function (entries) {
+    var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { animate(); io.disconnect(); }
-      });
-    }, { threshold: 0.3 });
-    io.observe(panel);
-  }
-
-  /* ---------------------------------------------------------
-     5. HERO MINI CHART — animated line drawn once, in-view
-  --------------------------------------------------------- */
-  function initMiniChart() {
-    var line = document.getElementById('chartLine');
-    var fill = document.getElementById('chartFill');
-    var dotsGroup = document.getElementById('chartDots');
-    if (!line) return;
-
-    var points = [
-      [0, 60], [40, 50], [80, 55], [120, 30], [160, 42], [200, 18], [240, 26], [280, 10]
-    ];
-    var alertIndex = 5; // point flagged as anomaly
-
-    var lineStr = points.map(function (p) { return p[0] + ',' + p[1]; }).join(' ');
-    var fillStr = '0,90 ' + lineStr + ' 280,90';
-
-    line.setAttribute('points', lineStr);
-    fill.setAttribute('points', fillStr);
-
-    var pathLength = 400;
-    line.style.strokeDasharray = pathLength;
-    line.style.strokeDashoffset = pathLength;
-
-    points.forEach(function (p, i) {
-      var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      c.setAttribute('cx', p[0]);
-      c.setAttribute('cy', p[1]);
-      c.setAttribute('r', i === alertIndex ? 4 : 2.5);
-      c.setAttribute('class', i === alertIndex ? 'chart-dot chart-dot--alert' : 'chart-dot');
-      c.style.opacity = '0';
-      c.style.transition = 'opacity 0.4s ease ' + (i * 0.08 + 0.3) + 's';
-      dotsGroup.appendChild(c);
-    });
-
-    var animated = false;
-    function animate() {
-      if (animated) return;
-      animated = true;
-      line.style.transition = 'stroke-dashoffset 1.3s cubic-bezier(.16,.8,.24,1)';
-      requestAnimationFrame(function () {
-        line.style.strokeDashoffset = '0';
-      });
-      Array.prototype.forEach.call(dotsGroup.children, function (c) {
-        c.style.opacity = '1';
-      });
-    }
-
-    var panel = document.getElementById('heroPanel');
-    if (!('IntersectionObserver' in window) || !panel) { animate(); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { animate(); io.disconnect(); } });
-    }, { threshold: 0.3 });
-    io.observe(panel);
-  }
-
-  /* ---------------------------------------------------------
-     6. SKILLS STAGE — tabbed interactive capability grid
-  --------------------------------------------------------- */
-  var SKILLS_DATA = {
-    languages: [
-      { name: 'Python', use: 'Primary language for pipelines, modeling, and dashboards.' },
-      { name: 'SQL', use: 'Structuring and querying backend request and record data.' },
-      { name: 'Bash', use: 'Scripting and automating routine data tasks on Linux.' }
-    ],
-    analysis: [
-      { name: 'Pandas', use: 'Cleaning and reshaping tens of thousands of records.' },
-      { name: 'NumPy', use: 'Vectorized numerical work under the hood of every pipeline.' },
-      { name: 'Statistical Analysis', use: 'Measuring utility retained after anonymization.' },
-      { name: 'Exploratory Data Analysis', use: 'First pass on any new dataset, before modeling.' },
-      { name: 'Feature Engineering', use: 'Shaping raw fields into signals a model can use.' },
-      { name: 'Data Cleaning', use: 'Where most of the actual project time goes.' },
-      { name: 'Data Wrangling', use: 'Merging and reformatting messy multi-source inputs.' }
-    ],
-    visualization: [
-      { name: 'Tableau', use: 'Building shareable, stakeholder-facing dashboards.' },
-      { name: 'Power BI', use: 'Business-facing reporting and drill-down views.' },
-      { name: 'Excel', use: 'Fast, familiar analysis for smaller ad-hoc datasets.' },
-      { name: 'Matplotlib', use: 'Custom static charts for deeper statistical checks.' },
-      { name: 'Seaborn', use: 'Distribution and correlation views during EDA.' },
-      { name: 'Plotly', use: 'Interactive charts embedded in live dashboards.' },
-      { name: 'Streamlit', use: 'Turning a script into a usable internal tool.' }
-    ],
-    ml: [
-      { name: 'Scikit-Learn', use: 'Training and evaluating models end to end.' },
-      { name: 'Anomaly Detection', use: 'Flagging traffic and records that don\u2019t fit the norm.' },
-      { name: 'Isolation Forest', use: 'Core model behind the API attack detection system.' }
-    ],
-    databases: [
-      { name: 'MySQL', use: 'Structured storage and querying for backend datasets.' }
-    ],
-    tools: [
-      { name: 'Git', use: 'Version control for every project, from day one.' },
-      { name: 'GitHub', use: 'Hosting, issues, and collaboration on active repos.' },
-      { name: 'Jupyter Notebook', use: 'Iterating on analysis before it becomes a pipeline.' },
-      { name: 'VS Code', use: 'Daily driver for scripts, dashboards, and APIs.' },
-      { name: 'Linux', use: 'Development environment for most project work.' }
-    ]
-  };
-
-  function initSkillsStage() {
-    var tabs = document.querySelectorAll('.skills__tab');
-    var stage = document.getElementById('skillStage');
-    if (!stage) return;
-
-    function render(cat) {
-      var items = SKILLS_DATA[cat] || [];
-      var grid = document.createElement('div');
-      grid.className = 'skill-grid';
-      items.forEach(function (item, i) {
-        var chip = document.createElement('div');
-        chip.className = 'skill-chip';
-        chip.style.animationDelay = (i * 0.05) + 's';
-        chip.innerHTML =
-          '<span class="skill-chip__name">' + item.name + '</span>' +
-          '<span class="skill-chip__use">' + item.use + '</span>';
-        grid.appendChild(chip);
-      });
-      stage.innerHTML = '';
-      stage.appendChild(grid);
-    }
-
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        tabs.forEach(function (t) { t.classList.remove('is-active'); });
-        tab.classList.add('is-active');
-        render(tab.getAttribute('data-cat'));
-      });
-    });
-
-    render('languages');
-  }
-
-  /* ---------------------------------------------------------
-     7. PROJECT CASE-STUDY TOGGLES
-  --------------------------------------------------------- */
-  function initProjectToggles() {
-    var buttons = document.querySelectorAll('[data-toggle-detail]');
-    buttons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var id = btn.getAttribute('data-toggle-detail');
-        var panel = document.getElementById(id);
-        if (!panel) return;
-        var isOpen = panel.classList.toggle('is-open');
-        btn.classList.toggle('is-open', isOpen);
-        var label = btn.querySelector('span');
-        if (label) label.textContent = isOpen ? 'Close' : 'Case study';
-      });
-    });
-  }
-
-  /* ---------------------------------------------------------
-     8. TIMELINE — staggered reveal on scroll
-  --------------------------------------------------------- */
-  function initTimeline() {
-    var items = document.querySelectorAll('.timeline__item');
-    if (!('IntersectionObserver' in window)) {
-      items.forEach(function (i) { i.classList.add('is-visible'); });
-      return;
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry, idx) {
-        if (entry.isIntersecting) {
-          setTimeout(function () {
-            entry.target.classList.add('is-visible');
-          }, idx * 60);
-          io.unobserve(entry.target);
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.2 });
-    items.forEach(function (i) { io.observe(i); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    targets.forEach(function (t) { obs.observe(t); });
   }
 
-  /* ---------------------------------------------------------
-     9. HERO PANEL TILT — subtle mouse-responsive 3D
-  --------------------------------------------------------- */
-  function initTilt() {
-    var panel = document.querySelector('.panel-card');
-    var wrap = document.getElementById('heroPanel');
-    if (!panel || !wrap || reduceMotion) return;
-    if (window.matchMedia('(max-width: 980px)').matches) return;
+  /* ============================================================
+     6. MOBILE MENU
+     ============================================================ */
+  function initMenu() {
+    var toggle = $('#menuToggle');
+    var menu = $('#mobileMenu');
+    if (!toggle || !menu) return;
 
-    wrap.addEventListener('mousemove', function (e) {
-      var rect = wrap.getBoundingClientRect();
-      var px = (e.clientX - rect.left) / rect.width - 0.5;
-      var py = (e.clientY - rect.top) / rect.height - 0.5;
-      var rotY = -6 + px * 10;
-      var rotX = 2 - py * 10;
-      panel.style.transform = 'perspective(1200px) rotateY(' + rotY + 'deg) rotateX(' + rotX + 'deg)';
+    toggle.addEventListener('click', function () {
+      var isOpen = menu.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen);
+      menu.setAttribute('aria-hidden', !isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
     });
-    wrap.addEventListener('mouseleave', function () {
-      panel.style.transform = 'perspective(1200px) rotateY(-6deg) rotateX(2deg)';
+
+    $$('[data-mobile-link]', menu).forEach(function (link) {
+      link.addEventListener('click', function () {
+        menu.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.classList.contains('open')) {
+        toggle.click();
+      }
     });
   }
 
-  /* ---------------------------------------------------------
+  /* ============================================================
+     7. CONTACT FORM
+     ============================================================ */
+  function initForm() {
+    var form = $('#contactForm');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var valid = true;
+      $$('input, textarea', form).forEach(function (f) {
+        f.classList.remove('error');
+        if (!f.value.trim() || (f.type === 'email' && !f.value.includes('@'))) {
+          f.classList.add('error');
+          valid = false;
+        }
+      });
+      if (!valid) return;
+
+      var name = $('#name').value || 'there';
+      var email = $('#email').value || '';
+      var msg = $('#message').value || '';
+      window.location.href = 'mailto:arshadalia2703@gmail.com?subject=' +
+        encodeURIComponent('Project inquiry from ' + name) + '&body=' +
+        encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + msg);
+    });
+
+    $$('input, textarea', form).forEach(function (f) {
+      f.addEventListener('input', function () { f.classList.remove('error'); });
+    });
+  }
+
+  /* ============================================================
+     8. SMOOTH SCROLL
+     ============================================================ */
+  function initScroll() {
+    $$('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href');
+        if (id === '#') return;
+        var target = $(id);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: RM ? 'auto' : 'smooth' });
+        }
+      });
+    });
+  }
+
+  /* ============================================================
      INIT
-  --------------------------------------------------------- */
-  document.addEventListener('DOMContentLoaded', function () {
-    initBackground();
-    initNav();
-    initReveals();
+     ============================================================ */
+  function init() {
+    initHeroViz();
+    initCharts();
+    initSkills();
     initCounters();
-    initMiniChart();
-    initSkillsStage();
-    initProjectToggles();
-    initTimeline();
-    initTilt();
-  });
+    initReveal();
+    initMenu();
+    initForm();
+    initScroll();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
