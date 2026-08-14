@@ -209,7 +209,7 @@ Update the component data arrays to change your name, bio, projects, skills, and
 |----------|------|
 | **GitHub** | [github.com/arshadaliathani](https://github.com/arshadali04) |
 | **LinkedIn** | [linkedin.com/in/arshadaliathani](https://linkedin.com/in/arshadali4) |
-| **Portfolio** | https://arshadali04-portfolio.netlify.app/ |
+| **Portfolio** | https://arshadaliathani.vercel.app/ |
 | **Email** | arshadalia2703@gmail.com |
 
 </div>
