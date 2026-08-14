@@ -67,10 +67,9 @@ const ITEMS: TimelineItem[] = [
 
 interface RowProps {
   item: TimelineItem;
-  index: number;
 }
 
-function TimelineRow({ item, index }: RowProps) {
+function TimelineRow({ item }: RowProps) {
   const rowRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(rowRef, { once: true, margin: "-15%" });
   const reduced = useReducedMotion();
@@ -180,8 +179,8 @@ export default function Experience() {
           </div>
 
           <div className="md:pl-8">
-            {ITEMS.map((item, i) => (
-              <TimelineRow key={item.role} item={item} index={i} />
+            {ITEMS.map((item) => (
+              <TimelineRow key={item.role} item={item} />
             ))}
           </div>
         </div>

@@ -34,35 +34,19 @@ export default function WordmarkSpotlight() {
       qyTo(py);
     };
 
-    const tick = () => {
-      if (fill) {
-        fill.style.setProperty("--sx", `${spotX.current}%`);
-        fill.style.setProperty("--sy", `${spotY.current}%`);
-      }
-      raf = requestAnimationFrame(tick);
-    };
-
     // Auto-drift for touch/no-hover
     let driftT = 0;
-    const drift = () => {
-      driftT += 0.004;
-      spotX.current = 50 + Math.sin(driftT * 0.7) * 35;
-      spotY.current = 50 + Math.cos(driftT * 0.5) * 30;
-    };
-
     let isDrifting = true;
     const stopDrift = () => { isDrifting = false; };
 
-    const driftTick = () => {
-      if (isDrifting) drift();
-    };
-
     raf = requestAnimationFrame(function loop() {
-      driftTick();
-      if (fill) {
-        fill.style.setProperty("--sx", `${spotX.current}%`);
-        fill.style.setProperty("--sy", `${spotY.current}%`);
+      if (isDrifting) {
+        driftT += 0.004;
+        spotX.current = 50 + Math.sin(driftT * 0.7) * 35;
+        spotY.current = 50 + Math.cos(driftT * 0.5) * 30;
       }
+      fill.style.setProperty("--sx", `${spotX.current}%`);
+      fill.style.setProperty("--sy", `${spotY.current}%`);
       raf = requestAnimationFrame(loop);
     });
 
@@ -72,6 +56,7 @@ export default function WordmarkSpotlight() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mousemove", stopDrift);
     };
   }, [reduced]);
 

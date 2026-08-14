@@ -40,6 +40,15 @@ const CATEGORIES: SkillCategory[] = [
 const TOTAL = CATEGORIES.reduce((n, c) => n + c.skills.length, 0);
 
 function SkillCard({ category, index }: { category: SkillCategory; index: number }) {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    el.style.setProperty("--glow", `${category.color}33`);
+    el.style.boxShadow = `0 24px 60px -12px ${category.color}33, 0 0 0 1px ${category.color}22`;
+  };
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.currentTarget.style.boxShadow = `0 1px 0 0 ${category.color}18 inset`;
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 48 }}
@@ -57,14 +66,8 @@ function SkillCard({ category, index }: { category: SkillCategory; index: number
           boxShadow: `0 1px 0 0 ${category.color}18 inset`,
         }}
         className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#222228] bg-[#16161A] p-6 transition-[box-shadow] duration-300 hover:shadow-[0_24px_60px_-12px_var(--glow)]"
-        // @ts-ignore
-        onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
-          (e.currentTarget as HTMLElement).style.setProperty("--glow", `${category.color}33`);
-          (e.currentTarget as HTMLElement).style.boxShadow = `0 24px 60px -12px ${category.color}33, 0 0 0 1px ${category.color}22`;
-        }}
-        onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
-          (e.currentTarget as HTMLElement).style.boxShadow = `0 1px 0 0 ${category.color}18 inset`;
-        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         {/* Top accent line */}
         <div

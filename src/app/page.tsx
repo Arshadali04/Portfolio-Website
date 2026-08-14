@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -14,17 +14,17 @@ import Experience from "@/components/experience/Experience";
 import Contact from "@/components/contact/Contact";
 import Footer from "@/components/footer/Footer";
 
+function useIsMounted() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+}
+
 export default function HomePage() {
   const [loading, setLoading] = useState(true);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const handlePreloadComplete = () => {
-    setLoading(false);
-  };
+  const mounted = useIsMounted();
 
   if (!mounted) return null;
 
@@ -32,7 +32,7 @@ export default function HomePage() {
     <>
       <AnimatePresence>
         {loading && (
-          <Preloader key="preloader" onComplete={handlePreloadComplete} />
+          <Preloader key="preloader" onComplete={() => setLoading(false)} />
         )}
       </AnimatePresence>
 

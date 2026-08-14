@@ -1,8 +1,8 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { Menu, ArrowRight, Mail } from "lucide-react";
+import { Menu, ArrowRight, Mail, Download } from "lucide-react";
 import WordmarkSpotlight from "./WordmarkSpotlight";
 import NavOverlay from "@/components/nav/NavOverlay";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -18,7 +18,6 @@ export default function Hero() {
   const [navOpen, setNavOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const reduced = useReducedMotion();
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -87,7 +86,7 @@ export default function Hero() {
             className="absolute z-[5] font-display text-[clamp(0.75rem,2vw,1.1rem)] font-semibold tracking-widest text-accent uppercase"
             style={{ top: "50%", transform: "translateY(-50%)" }}
           >
-            Data Engineer · Full-Stack · ML
+            Data Engineer · Software Developer
           </motion.p>
 
           {/* Giant wordmark */}
@@ -125,6 +124,9 @@ export default function Hero() {
               Building data pipelines, FastAPI systems, and ML-powered tools
               that turn raw data into real insight.
             </p>
+            <p className="mt-2 font-body text-xs text-muted/60">
+              CGPA <span className="font-semibold text-accent">8.34</span> / 10
+            </p>
           </motion.div>
 
           {/* Scroll indicator (center absolute) */}
@@ -136,8 +138,8 @@ export default function Hero() {
             <div className="relative h-8 w-px overflow-hidden bg-border">
               <motion.div
                 className="absolute top-0 h-full w-full bg-accent"
-                animate={{ y: ["0%", "100%"] }}
-                transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
+                animate={reduced ? { y: "0%" } : { y: ["0%", "100%"] }}
+                transition={reduced ? {} : { duration: 1.2, repeat: Infinity, ease: "linear" }}
               />
             </div>
           </motion.div>
@@ -150,6 +152,16 @@ export default function Hero() {
             >
               Explore Work
               <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+            </a>
+            <a
+              href="/Arshadali_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Arshadali_Resume.pdf"
+              className="group flex items-center gap-2 rounded-full border border-border px-5 py-2.5 font-body text-sm font-medium text-fg transition-all hover:border-accent hover:text-accent focus-visible:outline-accent"
+            >
+              <Download size={15} className="transition-transform group-hover:-translate-y-0.5" />
+              Resume
             </a>
             <a
               href="#contact"

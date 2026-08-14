@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 interface PreloaderProps {
@@ -11,7 +11,6 @@ export default function Preloader({ onComplete }: PreloaderProps) {
   const counterRef = useRef<HTMLSpanElement>(null);
   const nameRef = useRef<HTMLDivElement>(null);
   const underlineRef = useRef<HTMLSpanElement>(null);
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -24,7 +23,6 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         ease: "power2.inOut",
         onUpdate() {
           const v = Math.round(obj.val);
-          setCount(v);
           if (counterRef.current) {
             counterRef.current.textContent = String(v).padStart(2, "0");
           }

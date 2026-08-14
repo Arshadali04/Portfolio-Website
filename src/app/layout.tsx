@@ -17,12 +17,13 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "Arshadali M Athani — Data Engineer",
+  title: "Arshadali M Athani — Data Engineer & Software Developer",
   description:
-    "Full-stack data engineer and computer science undergraduate building data pipelines, APIs, and ML-powered systems. Based in Bengaluru, India.",
+    "Data engineer and software developer building data pipelines, APIs, and ML-powered systems. CS undergraduate at RVITM Bengaluru, India.",
   keywords: [
     "Arshadali Athani",
     "Data Engineer",
+    "Software Developer",
     "Python",
     "FastAPI",
     "SQL",
@@ -30,17 +31,21 @@ export const metadata: Metadata = {
     "Portfolio",
   ],
   authors: [{ name: "Arshadali M Athani" }],
+  metadataBase: new URL("https://arshadali.netlify.app"),
   openGraph: {
     type: "website",
-    title: "Arshadali M Athani — Data Engineer",
+    url: "https://arshadali.netlify.app",
+    title: "Arshadali M Athani — Data Engineer & Software Developer",
     description:
       "Building data pipelines, APIs, and ML-powered systems. CS undergraduate at RVITM Bengaluru.",
     siteName: "Arshadali M Athani Portfolio",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Arshadali M Athani — Data Engineer & Software Developer" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arshadali M Athani — Data Engineer",
+    title: "Arshadali M Athani — Data Engineer & Software Developer",
     description: "Building data pipelines, APIs, and ML-powered systems.",
+    images: ["/og-image.png"],
   },
   robots: { index: true, follow: true },
 };
@@ -55,7 +60,15 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${syne.variable} h-full`}
     >
-      <body className="min-h-full bg-bg text-fg antialiased">{children}</body>
+      <body className="min-h-full bg-bg text-fg antialiased">
+        <a
+          href="#hero"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:outline-none"
+        >
+          Skip to content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

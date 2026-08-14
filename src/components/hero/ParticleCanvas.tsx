@@ -1,25 +1,24 @@
 "use client";
-import { useRef, useMemo } from "react";
+import { useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
 const PARTICLE_COUNT = 600;
 
+// Generated once at module load — stable across re-renders
+const PARTICLE_POSITIONS = (() => {
+  const pos = new Float32Array(PARTICLE_COUNT * 3);
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    pos[i * 3] = (Math.random() - 0.5) * 14;
+    pos[i * 3 + 1] = (Math.random() - 0.5) * 10;
+    pos[i * 3 + 2] = (Math.random() - 0.5) * 8;
+  }
+  return pos;
+})();
+
 function Particles() {
   const meshRef = useRef<THREE.Points>(null);
-  const { size, mouse } = useThree();
-
-  const [positions, randoms] = useMemo(() => {
-    const pos = new Float32Array(PARTICLE_COUNT * 3);
-    const rand = new Float32Array(PARTICLE_COUNT);
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 14;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 10;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 8;
-      rand[i] = Math.random();
-    }
-    return [pos, rand];
-  }, []);
+  const { mouse } = useThree();
 
   useFrame(({ clock }) => {
     if (!meshRef.current) return;
@@ -35,7 +34,7 @@ function Particles() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          args={[positions, 3]}
+          args={[PARTICLE_POSITIONS, 3]}
         />
       </bufferGeometry>
       <pointsMaterial
@@ -82,6 +81,8 @@ export default function ParticleCanvas() {
       gl={{ antialias: false, alpha: true }}
       dpr={[1, 1.5]}
       style={{ position: "absolute", inset: 0 }}
+      aria-label="Decorative particle background"
+      role="img"
     >
       <ambientLight intensity={0.4} />
       <pointLight position={[4, 4, 4]} intensity={1.5} color="#FF6B4A" />
