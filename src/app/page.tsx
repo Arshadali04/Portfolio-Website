@@ -8,6 +8,7 @@ const Preloader = dynamic(() => import("@/components/preloader/Preloader"), {
 });
 import Hero from "@/components/hero/Hero";
 import Philosophy from "@/components/philosophy/Philosophy";
+import Skills from "@/components/skills/Skills";
 import Projects from "@/components/projects/Projects";
 import Experience from "@/components/experience/Experience";
 import Contact from "@/components/contact/Contact";
@@ -43,6 +44,7 @@ export default function HomePage() {
         <main>
           <Hero />
           <Philosophy />
+          <Skills />
           <Projects />
           <Experience />
           <Contact />

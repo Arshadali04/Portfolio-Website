@@ -1,169 +1,217 @@
-# 📊 Arshadali M Athani Portfolio Website
+# Arshadali M Athani — Portfolio Website
 
 <div align="center">
 
-### *Computer Science Undergraduate | Aspiring Data Analyst*
+### *Computer Science Undergraduate | Data Engineer · Full-Stack · ML*
 
-**`"Building a clean, interactive portfolio to showcase projects, skills, and growth"`**
+**`"Building data pipelines, FastAPI systems, and ML-powered tools that turn raw data into real insight"`**
 
 <br/>
 
-![Portfolio Preview](https://img.shields.io/badge/Status-Live%20Portfolio-2E86AB?style=for-the-badge)
-![Vanilla JS](https://img.shields.io/badge/Vanilla-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Portfolio Preview](https://img.shields.io/badge/Status-Live%20Portfolio-FF6B4A?style=for-the-badge)
+![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
 </div>
 
 ---
 
-## 🧭 About This Project
+## About This Project
 
 > **This portfolio website is a visual summary of my journey, skills, and selected work.**
 
-This project presents my background as a Computer Science undergraduate and aspiring Data Analyst in a polished, responsive, and interactive layout. It is built from scratch using only HTML5, CSS3, and JavaScript, with no frameworks or build tools.
+Built from scratch as a Next.js 16 application using React 19, TypeScript, and Tailwind CSS v4. Features GPU-accelerated 3D particle backgrounds, scroll-driven animations via GSAP + Framer Motion, and a working contact form backed by a Next.js API route.
 
-### 🌟 Why This Portfolio Exists
+### Why This Portfolio Exists
 
 | Purpose | Description |
 |--------|-------------|
-| 📖 **Personal Brand** | A clear introduction to who I am and what I am working toward |
-| 💼 **Project Showcase** | Highlights selected projects with goals, tools, and outcomes |
-| 🛠️ **Skill Snapshot** | Displays technical strengths, progress, and learning areas |
-| 🤝 **Contact Hub** | Makes it easy to connect through GitHub, LinkedIn, and email |
+| **Personal Brand** | A clear introduction to who I am and what I am working toward |
+| **Project Showcase** | Highlights selected projects with goals, tools, and outcomes |
+| **Skill Snapshot** | Displays technical strengths grouped by category |
+| **Contact Hub** | Makes it easy to connect through GitHub, LinkedIn, and email |
 
-### 💡 Design Philosophy
+### Design Philosophy
 
-The site is intentionally designed to feel modern, interactive, and easy to scan. It uses motion, responsive sections, and clear content hierarchy to communicate both technical skill and personality.
+Dark, minimal, and motion-first. The site uses a tight design system — a single accent color (`#FF6B4A`), two type scales (Syne display, Space Grotesk body), and scroll-driven reveals to communicate both technical skill and personality without noise.
 
 ---
 
-## 🗺️ Site Structure
+## Site Structure
 
 > A single-page portfolio with content organized into focused sections.
 
 ```text
 Portfolio-Website/
-├── index.html
-├── style.css
-└── script.js
+├── src/
+│   ├── app/
+│   │   ├── page.tsx            # Root page — section composition
+│   │   ├── layout.tsx          # Font loading, metadata
+│   │   ├── globals.css         # Design tokens, Tailwind theme
+│   │   └── api/contact/        # Contact form API route
+│   ├── components/
+│   │   ├── preloader/          # Animated entrance preloader
+│   │   ├── hero/               # 3D particle canvas, wordmark, CTAs
+│   │   ├── philosophy/         # GSAP scroll-pinned statement section
+│   │   ├── skills/             # Categorized skill badges
+│   │   ├── projects/           # Project cards grid
+│   │   ├── experience/         # Animated timeline
+│   │   ├── contact/            # Contact form with Zod validation
+│   │   ├── footer/             # Footer links
+│   │   └── nav/                # Full-screen nav overlay
+│   ├── hooks/                  # useMousePosition, useReducedMotion
+│   └── lib/                    # Shared utilities
+├── public/                     # Static assets
+├── Arshadali_Resume.pdf
+└── package.json
 ```
 
 <details>
-<summary><b>📌 Core Sections</b></summary>
+<summary><b>Core Sections</b></summary>
 
 <br/>
 
 | # | Section | Description |
 |---|---------|-------------|
-| 1 | **Hero** | Name, title, short intro, and key call-to-action |
-| 2 | **About** | Background, goals, and professional direction |
-| 3 | **Skills** | Technical skills grouped by category |
-| 4 | **Projects** | Featured projects with summaries and details |
-| 5 | **Timeline** | Education, milestones, and learning journey |
-| 6 | **Contact** | Links and contact information |
+| 1 | **Hero** | Name, title, 3D particle background, and key CTAs |
+| 2 | **Philosophy** | Scroll-pinned statement about how I approach engineering |
+| 3 | **Skills** | Technical skills grouped by category with visual badges |
+| 4 | **Projects** | Featured projects with descriptions, tags, and GitHub links |
+| 5 | **Experience** | Education, leadership, and certifications timeline |
+| 6 | **Contact** | Validated contact form and direct links |
 
 </details>
 
 ---
 
-## ✨ Features
+## Features
 
-- Animated canvas-style background with a data-network feel.
-- Interactive skills section with tabbed or grouped content.
-- Expandable project descriptions for better readability.
-- Animated highlights and scroll-based reveal effects.
+- GPU-accelerated 3D particle canvas built with Three.js and React Three Fiber.
+- Scroll-driven animations using GSAP ScrollTrigger — pinned sections, progress lines, and reveals.
+- Framer Motion entrance animations with `AnimatePresence` preloader.
+- Categorized skills section with animated badge grid.
+- Three-column project card grid with staggered hover effects.
+- Animated timeline for experience and education.
+- Contact form with Zod schema validation and a Next.js API route handler.
 - Responsive layout for desktop, tablet, and mobile.
-- Accessible focus states and support for reduced motion preferences.
+- Accessible focus states and full reduced-motion support.
 
 ---
 
-## 🛠️ Built With
+## Built With
 
 <details>
-<summary><b>⚙️ Frontend Stack</b></summary>
+<summary><b>Frontend Stack</b></summary>
 
 <br/>
 
 | Category | Tools |
 |----------|-------|
-| **Markup** | HTML5 |
-| **Styling** | CSS3 |
-| **Logic** | Vanilla JavaScript |
-| **Icons/Badges** | Markdown badges and inline SVG/image assets |
+| **Framework** | Next.js 16 (App Router) |
+| **Language** | TypeScript 5 |
+| **UI Library** | React 19 |
+| **Styling** | Tailwind CSS v4 |
+| **Animation** | Framer Motion 13, GSAP 3 + ScrollTrigger |
+| **3D / Canvas** | Three.js, React Three Fiber, Drei |
+| **Forms** | React Hook Form, Zod |
+| **Icons** | Lucide React |
 
 </details>
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
-Because this is a static website, you can open `index.html` directly in a browser.
+```bash
+npm install
+npm run dev
+```
 
-If you want to serve it locally, run a simple HTTP server from the project folder and open the local address in your browser.
+Open `http://localhost:3000` in your browser. For a production build:
 
----
-
-## 🎨 Customize
-
-Most updates can be made without any build step:
-
-- Personal details, section copy, project descriptions, and contact links live in `index.html`.
-- Styling tokens, layout rules, and visual themes are defined in `style.css`.
-- Interactive behavior and dynamic effects live in `script.js`.
-
-Update those files to change your name, bio, projects, colors, and contact details.
+```bash
+npm run build
+npm run start
+```
 
 ---
 
-## 💼 Project Highlights
+## Customize
 
-> Featured examples of the work represented on the portfolio.
+- Section content, copy, and project data live inside each component in `src/components/`.
+- Design tokens (colors, fonts, spacing) are defined in `src/app/globals.css` under `@theme`.
+- API route for the contact form is at `src/app/api/contact/route.ts`.
+
+Update the component data arrays to change your name, bio, projects, skills, and contact details — no build configuration required.
+
+---
+
+## Project Highlights
+
+> Featured work represented on the portfolio.
 
 <details>
-<summary><b>📊 Data Analyst Journey</b></summary>
+<summary><b>Data Anonymization System</b></summary>
 
 <br/>
 
 | Field | Details |
 |-------|---------|
-| 📌 **Status** | Active |
-| 🛠️ **Tools** | HTML5, CSS3, JavaScript |
-| 🎯 **Objective** | Present skills, projects, and learning progress in a polished portfolio |
-| 🔗 **Demo** | Live portfolio website |
+| **Status** | Completed — Jun 2025 |
+| **Tools** | Python, Pandas, Streamlit, Scikit-Learn |
+| **Technique** | K-Anonymity, L-Diversity |
+| **Scale** | 10,000+ financial records |
 
-**Description:** A personal portfolio that showcases my growth, selected projects, and readiness for data-focused opportunities.
+**Description:** Python data processing pipeline applying K-Anonymity and L-Diversity to protect sensitive fields while retaining 90%+ statistical utility. Automated workflows cut processing time from minutes to under 30 seconds with an interactive Streamlit dashboard.
 
 </details>
 
 <details>
-<summary><b>🎯 Featured Projects</b></summary>
+<summary><b>Zero Trust API Gateway</b></summary>
 
 <br/>
 
-| Project | Focus |
-|---------|-------|
-| Financial Data Anonymization System | Data privacy and masking sensitive information |
-| OLA Ride Analytics Dashboard | Ride demand, revenue, and trend analysis |
-| Amazon Sales Dashboard | Sales performance and category insights |
-| YouTube Data EDA | Engagement analysis and content trends |
+| Field | Details |
+|-------|---------|
+| **Status** | Active — Feb 2025 |
+| **Tools** | Python, FastAPI, Scikit-Learn, SQL |
+| **Technique** | Isolation Forest anomaly detection |
+| **Detects** | SQL injection, XSS, brute-force patterns |
+
+**Description:** FastAPI-based secure gateway with real-time ML threat detection. Trained Isolation Forest model flags abnormal API traffic patterns and surfaces them through a threat visualization dashboard.
+
+</details>
+
+<details>
+<summary><b>OLA Ride Bookings Analytics</b></summary>
+
+<br/>
+
+| Field | Details |
+|-------|---------|
+| **Status** | Completed — 2025 |
+| **Tools** | Power BI, SQL, DAX, Power Query, Excel |
+| **Scale** | 100,000+ ride bookings |
+| **Deliverable** | 5-page Power BI dashboard |
+
+**Description:** End-to-end analytics project using a star-schema data model in Power Query. SQL queries with window functions, CTEs, and aggregations validate all Power BI KPIs across vehicle type and payment method.
 
 </details>
 
 ---
 
-## 🤝 Connect With Me
+## Connect With Me
 
 <div align="center">
 
 | Platform | Link |
 |----------|------|
-| 🐙 **GitHub** | [github.com/arshadaliathani](https://github.com/arshadali04) |
-| 💼 **LinkedIn** | [linkedin.com/in/arshadaliathani](https://linkedin.com/in/arshadali4) |
-| 🌐 **Portfolio** | https://arshadali04-portfolio.netlify.app/|
-| 📧 **Email** | arshadalia2703@gmail.com |
+| **GitHub** | [github.com/arshadaliathani](https://github.com/arshadali04) |
+| **LinkedIn** | [linkedin.com/in/arshadaliathani](https://linkedin.com/in/arshadali4) |
+| **Portfolio** | https://arshadali04-portfolio.netlify.app/ |
+| **Email** | arshadalia2703@gmail.com |
 
 </div>
 
 ---
-
